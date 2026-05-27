@@ -7,6 +7,21 @@ export const metadata: Metadata = {
   title: "Zharkyn Kalysh — Product Designer",
   description:
     "Product designer with 6 years of experience designing B2C and B2B products in fintech and telecom.",
+  openGraph: {
+    title: "Zharkyn Kalysh — Product Designer",
+    description:
+      "Product designer with 6 years of experience designing B2C and B2B products in fintech and telecom.",
+    url: "https://zharkyn.design",
+    siteName: "zharkyn.design",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zharkyn Kalysh — Product Designer",
+    description:
+      "Product designer with 6 years of experience designing B2C and B2B products in fintech and telecom.",
+  },
 };
 
 // Антифликер: проставляем класс темы до отрисовки контента, чтобы при
