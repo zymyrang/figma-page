@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# исходники видосов/материалов — не для сайта
+*.MOV.bak
+passport-source.MOV
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

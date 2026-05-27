@@ -1,26 +1,504 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Suisse Int'l — основной шрифт сайта ───────────────────────── */
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("/fonts/SuisseIntl-Book.otf") format("opentype");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("/fonts/SuisseIntl-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("/fonts/SuisseIntl-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("/fonts/SuisseIntl-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pixelizer — пиксельный шрифт с кириллицей, для бегущей строки. */
+@font-face {
+  font-family: "Pixelizer";
+  src: url("/fonts/PixelizerBold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:
+    "Suisse Intl", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Темы ──────────────────────────────────────────────────────
+   Цвета сайта вынесены в переменные. По умолчанию — тёмная тема;
+   класс .light на <html> переключает на светлую. */
+:root {
+  --bg: #131313;
+  --fg: #f7f7f7;
+  --card: #1e1e1e;
+  --border: #2e2e2e;
+  --card-hover: #252525;
+  /* Канвас рисования: лёгкая заливка и рамка */
+  --pp-fill: rgba(255, 255, 255, 0.05);
+  --pp-border: rgba(255, 255, 255, 0.15);
+}
+html.light {
+  --bg: #f4f4f4;
+  --fg: #131313;
+  --card: #ffffff;
+  --border: #e4e4e4;
+  --card-hover: #ededed;
+  --pp-fill: rgba(0, 0, 0, 0.035);
+  --pp-border: rgba(0, 0, 0, 0.15);
+}
+
+/* Плавный переход между темами. Класс вешается на <html> только на
+   время переключения — чтобы цвета анимировались, но в обычном
+   состоянии не мешали hover-эффектам. */
+html.theme-transition,
+html.theme-transition * {
+  transition:
+    background-color 0.32s ease,
+    border-color 0.32s ease,
+    color 0.32s ease !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Облако «страшных слов» в 3-й гипотезе.
+   Делим анимацию на 2 части: появление (opacity) и постоянный float (transform).
+   Они не конфликтуют, потому что трогают разные свойства. */
+@keyframes scaryFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--target-opacity, 1);
+  }
+}
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-6px) rotate(var(--rot, 0deg));
+  }
+}
+@keyframes scaryDrawArrow {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Финальное число цели «приземляется»: масштабируется с overshoot
+   и кратко вспыхивает зелёным свечением. */
+@keyframes goalLand {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+    text-shadow: 0 0 0 rgba(12, 196, 77, 0);
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+    text-shadow:
+      0 0 30px rgba(12, 196, 77, 0.55),
+      0 0 8px rgba(12, 196, 77, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0 0 0 rgba(12, 196, 77, 0);
+  }
 }
+
+/* Старое значение цели «вычёркивается» — линия strike-through
+   расходится из центра наружу за 600ms. */
+@keyframes goalStrike {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Стрелка-разделитель «выезжает» вправо, имитируя движение от старого
+   значения к новому. */
+@keyframes goalArrow {
+  from {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+}
+
+/* Бегущая строка: непрерывный сдвиг влево на 50% длины трэка.
+   Содержимое дублируется в JSX, чтобы петля выглядела бесшовно. */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Бабл в чате «всплывает» снизу с лёгким масштабом. */
+@keyframes chatBubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Точка в индикаторе «печатает…»: подпрыгивает с тремя соседями
+   в фазах. */
+@keyframes typingDot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* Лампочка-инсайт: плавно загорается жёлтым с лёгким свечением,
+   потом тускнеет до серого. Цикл бесконечный, ease-in-out — чтобы
+   мерцание ощущалось «дышащим», а не резким. */
+@keyframes bulbBlink {
+  0%,
+  40% {
+    color: #ffd54a;
+    filter: drop-shadow(0 0 10px rgba(255, 213, 74, 0.7))
+      drop-shadow(0 0 4px rgba(255, 213, 74, 0.5));
+  }
+  50%,
+  100% {
+    color: #4a4a4a;
+    filter: none;
+  }
+}
+.bulb-anim {
+  animation: bulbBlink 2s ease-in-out infinite;
+}
+
+/* Линия-коннектор useflow «прорисовывается» сверху вниз. */
+@keyframes lineGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Узел useflow «загорается»: из тусклого серого в акцентный цвет
+   (по умолчанию — зелёный) со свечением и лёгким overshoot по размеру.
+   Финальный цвет и его свечение можно переопределить через CSS-переменные
+   --node-end / --node-glow на родительском элементе. */
+@keyframes nodeLight {
+  0% {
+    background-color: #343434;
+    box-shadow: 0 0 0 0 var(--node-glow-0, rgba(12, 196, 77, 0));
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.4);
+  }
+  100% {
+    background-color: var(--node-end, #0cc44d);
+    box-shadow: 0 0 14px 2px var(--node-glow, rgba(12, 196, 77, 0.5));
+    transform: scale(1);
+  }
+}
+
+/* Подпись узла useflow проявляется из тусклой в яркую. */
+@keyframes labelLight {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+/* Tailwind v4 по умолчанию ставит cursor:default на <button>. Возвращаем
+   pointer — кликабельные элементы должны явно выглядеть кликабельными. */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a {
+  cursor: pointer;
+}
+
+/* Анти-вспышка локализации: если у пользователя сохранён английский,
+   прячем тело до тех пор, пока React не отрисует контент в правильном
+   языке. Класс выставляется инлайн-скриптом до парсинга <body>, и
+   снимается из LanguageProvider после маунта. */
+html.lang-pending body {
+  visibility: hidden;
+}
+
+/* Роадмап опыта на главной: самолёт пролетает над четырьмя точками,
+   каждая загорается своим цветом, последняя остаётся подсвечена. */
+/* Самолётик в таймлайне «Опыт»: летит линейно по горизонтали все 9s,
+   fade in в начале (0-8%) и поздний fade out на подлёте (85-100%) —
+   чтобы плэйн был виден почти до самой Альфы и не «стукался». 5px —
+   радиус 10px-точки (size-2.5). */
+@keyframes expTimelineFly {
+  0% {
+    left: 5px;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(75% + 5px);
+    opacity: 0;
+  }
+}
+/* Точка пульсирует, когда самолёт пролетает: серый → белый/зелёный с
+   неоновым свечением → серый. Параметры цвета и свечения задаются
+   через CSS-переменные --dot-on и --dot-glow на inline-стиле. */
+@keyframes expDotPulse {
+  0% {
+    background-color: #444;
+    box-shadow: 0 0 0 0 transparent;
+    transform: scale(1);
+  }
+  35%,
+  55% {
+    background-color: var(--dot-on, #f7f7f7);
+    box-shadow:
+      0 0 10px 2px var(--dot-glow, rgba(247, 247, 247, 0.7)),
+      0 0 22px 6px var(--dot-glow-soft, rgba(247, 247, 247, 0.25));
+    transform: scale(1.35);
+  }
+  100% {
+    background-color: #444;
+    box-shadow: 0 0 0 0 transparent;
+    transform: scale(1);
+  }
+}
+/* Финальная точка (Альфа) — не тухнет: загорается и остаётся. */
+@keyframes expDotStay {
+  from {
+    background-color: #444;
+    box-shadow: 0 0 0 0 transparent;
+    transform: scale(1);
+  }
+  to {
+    background-color: var(--dot-on);
+    box-shadow:
+      0 0 12px 3px var(--dot-glow),
+      0 0 26px 8px var(--dot-glow-soft);
+    transform: scale(1.35);
+  }
+}
+/* После прилёта Альфа медленно «дышит» — редкий неоновый пульс. */
+@keyframes expDotPulseSlow {
+  0%,
+  100% {
+    background-color: var(--dot-on);
+    box-shadow:
+      0 0 12px 3px var(--dot-glow),
+      0 0 26px 8px var(--dot-glow-soft);
+    transform: scale(1.35);
+  }
+  50% {
+    background-color: var(--dot-on);
+    box-shadow:
+      0 0 20px 5px var(--dot-glow),
+      0 0 40px 14px var(--dot-glow-soft);
+    transform: scale(1.55);
+  }
+}
+/* Дашики на линии: загораются белым в момент пролёта самолёта (peak
+   очень быстро в 15% длительности — 0.09s от старта при duration 0.6s)
+   и плавно тухнут к серому. */
+@keyframes expDashFlash {
+  0% {
+    background-color: #3a3a3a;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  15% {
+    background-color: #f7f7f7;
+    box-shadow: 0 0 5px 1px rgba(247, 247, 247, 0.5);
+  }
+  100% {
+    background-color: #3a3a3a;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+/* Текст под точкой пульсирует синхронно с точкой: серый → белый →
+   серый, теми же таймингами, что expDotPulse. */
+@keyframes expTextPulse {
+  0%,
+  100% {
+    color: #8a8a8a;
+  }
+  35%,
+  55% {
+    color: #f7f7f7;
+  }
+}
+/* Текст под последней точкой (Альфа) загорается белым и остаётся
+   белым после fill-mode forwards. */
+@keyframes expTextStay {
+  from {
+    color: #8a8a8a;
+  }
+  to {
+    color: #f7f7f7;
+  }
+}
+/* Вертикальная «болтанка» + лёгкий банк крылом — чтобы самолёт казался
+   живым, а не плыл по линейке. translateX(-50%) сохраняем во всех
+   кадрах, чтобы не сбить горизонтальное центрирование. */
+@keyframes expTimelineBob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) translateY(-2px) rotate(2deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-3px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-2px) rotate(-2deg);
+  }
+}
+/* Самолёт растворяется на подлёте к Альфе. */
+@keyframes expTimelineFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Face ID анимация для превью «анкета с селфи»:
+   — сканирующая линия плавно идёт сверху-вниз-вверх
+   — внешняя рамка слегка пульсирует
+   — кончики уголков мерцают как индикатор «сканирование активно» */
+@keyframes faceIdScan {
+  0% {
+    transform: translateY(-40%);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(40%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40%);
+    opacity: 0.4;
+  }
+}
+@keyframes faceIdPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.55;
+  }
+}
+@keyframes faceIdBlink {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.face-id-scan {
+  animation: faceIdScan 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+.face-id-pulse {
+  animation: faceIdPulse 3.4s ease-in-out infinite;
+  transform-origin: center;
+}
+.face-id-corner {
+  animation: faceIdBlink 2.4s ease-in-out infinite;
+}
+
+/* Свитчер темы — одна кнопка с двумя иконками. Видимая иконка
+   определяется классом html.light (ставит антифликер-скрипт до первого
+   пайнта). React-стейт не управляет визуалом → никакой вспышки. */
+.theme-glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.18s ease-out,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Тёмная тема: видна луна, солнце спрятано */
+.theme-glyph--sun {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.6);
+}
+.theme-glyph--moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+/* Светлая тема — наоборот */
+html.light .theme-glyph--sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+html.light .theme-glyph--moon {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.6);
+}
+
