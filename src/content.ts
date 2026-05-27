@@ -638,7 +638,10 @@ const enContent = {
   site: {
     name: "Zharkyn Kalysh",
     navLinks: [
-      { label: "CV", href: "#" },
+      {
+        label: "CV",
+        href: "https://drive.google.com/file/d/11nOH5NaczEexxvZH3ePcLQRjeVNg-3fj/view?usp=sharing",
+      },
       { label: "Telegram", href: "https://t.me/unluckycat1" },
       {
         label: "LinkedIn",
