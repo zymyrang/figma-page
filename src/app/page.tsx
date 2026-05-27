@@ -147,13 +147,13 @@ function ExperienceTimeline({
             const dotDelays = [0, 2.1, 5.1, 8.4];
             // Не-Альфа: белая вспышка. Альфа в конце загорается зелёным
             // и остаётся гореть.
-            const dotEndColor = t.current ? "#0CC44D" : "#f7f7f7";
+            const dotEndColor = t.current ? "#0CC44D" : "var(--fg)";
             const glowStrong = t.current
               ? "rgba(12, 196, 77, 0.7)"
-              : "rgba(247, 247, 247, 0.7)";
+              : "var(--exp-glow-strong)";
             const glowSoft = t.current
               ? "rgba(12, 196, 77, 0.3)"
-              : "rgba(247, 247, 247, 0.3)";
+              : "var(--exp-glow-soft)";
             const animation = t.current
               ? `expDotStay 0.6s ease-out ${dotDelays[i]}s forwards, expDotPulseSlow 3.6s ease-in-out ${dotDelays[i] + 0.7}s infinite`
               : `expDotPulse 2s ease-out ${dotDelays[i]}s both`;

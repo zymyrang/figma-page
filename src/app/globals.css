@@ -56,6 +56,9 @@
   /* Канвас рисования: лёгкая заливка и рамка */
   --pp-fill: rgba(255, 255, 255, 0.05);
   --pp-border: rgba(255, 255, 255, 0.15);
+  /* Свечение для «Опыт»: вспышки дашей/точек */
+  --exp-glow-strong: rgba(247, 247, 247, 0.5);
+  --exp-glow-soft: rgba(247, 247, 247, 0.25);
 }
 html.light {
   --bg: #f4f4f4;
@@ -65,6 +68,8 @@ html.light {
   --card-hover: #ededed;
   --pp-fill: rgba(0, 0, 0, 0.035);
   --pp-border: rgba(0, 0, 0, 0.15);
+  --exp-glow-strong: rgba(19, 19, 19, 0.45);
+  --exp-glow-soft: rgba(19, 19, 19, 0.18);
 }
 
 /* Плавный переход между темами. Класс вешается на <html> только на
@@ -362,8 +367,8 @@ html.lang-pending body {
     box-shadow: 0 0 0 0 transparent;
   }
   15% {
-    background-color: #f7f7f7;
-    box-shadow: 0 0 5px 1px rgba(247, 247, 247, 0.5);
+    background-color: var(--fg);
+    box-shadow: 0 0 5px 1px var(--exp-glow-strong);
   }
   100% {
     background-color: #3a3a3a;
@@ -379,7 +384,7 @@ html.lang-pending body {
   }
   35%,
   55% {
-    color: #f7f7f7;
+    color: var(--fg);
   }
 }
 /* Текст под последней точкой (Альфа) загорается белым и остаётся
@@ -389,7 +394,7 @@ html.lang-pending body {
     color: #8a8a8a;
   }
   to {
-    color: #f7f7f7;
+    color: var(--fg);
   }
 }
 /* Вертикальная «болтанка» + лёгкий банк крылом — чтобы самолёт казался
