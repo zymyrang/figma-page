@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 // Антифликер: проставляем класс темы до отрисовки контента, чтобы при
 // выбранной светлой теме не было вспышки тёмной.
 const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light')}catch(e){}`;
-// Антифликер языка: если пользователь сохранил английский — прячем body
-// классом lang-pending до тех пор, пока React не перерисует в EN.
-// Иначе видна вспышка SSR-русского.
-const langScript = `try{if(localStorage.getItem('lang')==='en')document.documentElement.classList.add('lang-pending')}catch(e){}`;
+// Антифликер языка: если пользователь сохранил русский — прячем body
+// классом lang-pending до тех пор, пока React не перерисует в RU.
+// Иначе видна вспышка SSR-английского.
+const langScript = `try{if(localStorage.getItem('lang')==='ru')document.documentElement.classList.add('lang-pending')}catch(e){}`;
 
 export default function RootLayout({
   children,
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
         {/* Инлайн-скрипты антифликера: помещаем в <head>, чтобы они
             выполнились синхронно ДО парсинга <body> и первого пайнта.
