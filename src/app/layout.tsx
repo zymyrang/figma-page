@@ -4,9 +4,9 @@ import { ThemeProvider } from "./ThemeProvider";
 import { LanguageProvider } from "./LanguageProvider";
 
 export const metadata: Metadata = {
-  title: "Жаркын Калыш — Продуктовый дизайнер",
+  title: "Zharkyn Kalysh — Product Designer",
   description:
-    "Продуктовый дизайнер с 6 лет опыта проектирования различных B2C, B2B продуктов, в направлении финтех, телеком.",
+    "Product designer with 6 years of experience designing B2C and B2B products in fintech and telecom.",
 };
 
 // Антифликер: проставляем класс темы до отрисовки контента, чтобы при
