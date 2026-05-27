@@ -75,7 +75,10 @@ const ruContent = {
   site: {
     name: "Жаркын Калыш",
     navLinks: [
-      { label: "CV", href: "#" },
+      {
+        label: "CV",
+        href: "https://drive.google.com/file/d/1IAsOP_65Figocd-37Q0DyOS85sA121I7/view?usp=sharing",
+      },
       { label: "Телеграм", href: "https://t.me/unluckycat1" },
       {
         label: "LinkedIn",
