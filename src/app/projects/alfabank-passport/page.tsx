@@ -862,33 +862,58 @@ export default function AlfabankPassportPage() {
         </Reveal>
 
         {/* Hero — три анимированных экрана продукта сразу после summary.
-            Видео уже с айфон-рамками, кладём «как есть». */}
+            Видео с прозрачным фоном: WebM (VP9 alpha) для Chrome/Firefox/
+            Edge, MOV (HEVC alpha) фолбэк для Safari. */}
         <Reveal delay={200} className="-mt-10 -mb-10 sm:-mt-12 sm:-mb-12">
           <div className="flex items-end justify-center px-2 sm:px-0">
             <video
-              src={alfabankPassport.heroVideos.left}
               autoPlay
               loop
               muted
               playsInline
               className="relative z-10 block w-[180px] h-auto -mr-10 -translate-y-6 sm:w-[296px] sm:-mr-16 sm:-translate-y-10"
-            />
+            >
+              <source
+                src={alfabankPassport.heroVideos.left.replace(".mov", ".webm")}
+                type="video/webm"
+              />
+              <source
+                src={alfabankPassport.heroVideos.left}
+                type='video/quicktime; codecs="hvc1"'
+              />
+            </video>
             <video
-              src={alfabankPassport.heroVideos.center}
               autoPlay
               loop
               muted
               playsInline
               className="relative z-0 block w-[228px] h-auto sm:w-[376px]"
-            />
+            >
+              <source
+                src={alfabankPassport.heroVideos.center.replace(".mov", ".webm")}
+                type="video/webm"
+              />
+              <source
+                src={alfabankPassport.heroVideos.center}
+                type='video/quicktime; codecs="hvc1"'
+              />
+            </video>
             <video
-              src={alfabankPassport.heroVideos.right}
               autoPlay
               loop
               muted
               playsInline
               className="relative z-10 block w-[180px] h-auto -ml-10 sm:w-[296px] sm:-ml-16"
-            />
+            >
+              <source
+                src={alfabankPassport.heroVideos.right.replace(".mov", ".webm")}
+                type="video/webm"
+              />
+              <source
+                src={alfabankPassport.heroVideos.right}
+                type='video/quicktime; codecs="hvc1"'
+              />
+            </video>
           </div>
         </Reveal>
 
