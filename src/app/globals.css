@@ -3,28 +3,28 @@
 /* ── Suisse Int'l — основной шрифт сайта ───────────────────────── */
 @font-face {
   font-family: "Suisse Intl";
-  src: url("/fonts/SuisseIntl-Book.otf") format("opentype");
+  src: url("/fonts/SuisseIntl-Book.woff2") format("woff2");
   font-weight: 350;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Suisse Intl";
-  src: url("/fonts/SuisseIntl-Regular.otf") format("opentype");
+  src: url("/fonts/SuisseIntl-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Suisse Intl";
-  src: url("/fonts/SuisseIntl-Medium.otf") format("opentype");
+  src: url("/fonts/SuisseIntl-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Suisse Intl";
-  src: url("/fonts/SuisseIntl-Bold.otf") format("opentype");
+  src: url("/fonts/SuisseIntl-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -33,7 +33,7 @@
 /* Pixelizer — пиксельный шрифт с кириллицей, для бегущей строки. */
 @font-face {
   font-family: "Pixelizer";
-  src: url("/fonts/PixelizerBold.ttf") format("truetype");
+  src: url("/fonts/PixelizerBold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -262,6 +262,9 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Tailwind v4 по умолчанию ставит cursor:default на <button>. Возвращаем
