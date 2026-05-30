@@ -997,8 +997,8 @@ const enContent = {
       business: {
         title: "For the business",
         points: [
-          "We lose 35% during passport-data entry",
-          "Every form step shaves a few percent off conversion",
+          "We lose 35% during passport data entry",
+          "Every application step shifts a few % of CR",
           "Bad data → manual fixes → delayed payout",
         ],
       },
