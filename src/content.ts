@@ -991,7 +991,7 @@ const enContent = {
         points: [
           "Need money fast, no time to fill out a form",
           "Too many fields — gets tired and quits",
-          "Doesn't remember passport by heart",
+          "Doesn't remember passport details by heart",
         ],
       },
       business: {
