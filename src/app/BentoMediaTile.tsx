@@ -75,9 +75,20 @@ export default function BentoMediaTile({
             type="button"
             onClick={close}
             aria-label="Закрыть"
-            className="absolute top-6 right-6 size-[40px] rounded-full bg-[var(--card)]/80 border border-[var(--border)] text-[var(--fg)] hover:bg-[#2a2a2a] transition-colors flex items-center justify-center text-[20px] leading-none"
+            className="absolute top-6 right-6 size-[40px] rounded-full bg-[var(--card)]/80 border border-[var(--border)] text-[var(--fg)] hover:bg-[#2a2a2a] transition-colors flex items-center justify-center"
           >
-            ×
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              <path d="M1 1 L13 13 M13 1 L1 13" />
+            </svg>
           </button>
           <div
             onClick={(e) => e.stopPropagation()}
