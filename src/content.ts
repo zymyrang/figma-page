@@ -999,7 +999,7 @@ const enContent = {
         points: [
           "We lose 35% during passport data entry",
           "Every application step shifts a few % of CR",
-          "Bad data → manual fixes → delayed payout",
+          "Unclear data → manual fixes → delayed loan",
         ],
       },
     },
