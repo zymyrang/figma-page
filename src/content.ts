@@ -1047,7 +1047,7 @@ const enContent = {
     },
     userFlow: {
       label: "User flow",
-      body: "We learned that the «marital status» and «education» fields didn't improve approval accuracy — their contribution to default prediction turned out to be statistically insignificant. Combined with user feedback from interviews, we dropped them. The loan itself is issued in the authorized zone — inside the bank's app.",
+      body: "Turns out the \"marital status\" and \"education\" fields weren't adding any accuracy — their effect on default prediction was statistically insignificant. That, plus what users told us in interviews, led us to remove them.",
       before: {
         title: "Before",
         steps: [
