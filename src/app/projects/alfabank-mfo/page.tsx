@@ -435,9 +435,10 @@ export default function AlfabankMfoPage() {
         href="/"
         aria-label="Назад в проект Альфа-Банк"
         onClick={() => playBack()}
-        className="fixed left-[31px] top-[16px] size-[48px] rounded-full bg-[var(--card)] border border-[var(--border)] hidden sm:flex items-center justify-center hover:bg-[var(--card-hover)] transition-colors z-50"
+        className="fixed left-[31px] top-[16px] h-[48px] px-5 gap-2 rounded-full bg-[var(--card)] border border-[var(--border)] hidden sm:flex items-center justify-center hover:bg-[var(--card-hover)] transition-colors z-50 text-[15px] text-[var(--fg)]"
       >
-        <ArrowBack className="size-[20px] text-[var(--fg)]" />
+        <ArrowBack className="size-[16px]" />
+        Back
       </Link>
 
       <SectionNav sections={alfabankMfo.toc} />
