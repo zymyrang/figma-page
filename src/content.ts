@@ -1052,7 +1052,7 @@ const enContent = {
         title: "Before",
         steps: [
           "Fills in name, last name and contacts",
-          "Types passport details by hand",
+          "Types passport details manually",
           "Fills in personal data",
           "Gets approval or rejection",
         ],
