@@ -49,9 +49,14 @@ if (typeof window !== "undefined") {
   window.addEventListener("keydown", warmUp, opts);
 }
 
-// ─── Звук рисования в стиле Mario: ноты мажорной пентатоники, square ───
-// C5 D5 E5 G5 A5 + C6 — звучит как NES-чиптюн, всегда мелодично, без диссонанса
-const MARIO_PENTATONIC = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5];
+// ─── Звук рисования: «thock» в стиле тактильной клавиатуры ─────────────
+// Микс трёх компонент:
+//   1) Низкий triangle (корпус) — короткий «бум» на 110–180 Гц
+//   2) Шумовой бёрст через band-pass — «тук» наконечника карандаша
+//   3) Lowpass на корпус — срезает звонкость
+// Лёгкая вариация частот по пентатонике в нижней октаве — не назойливая
+// мелодия, но и не монотонный однотонный стук.
+const THOCK_NOTES = [110, 123.5, 138.6, 165, 185];
 let lastDrawTime = 0;
 let drawNoteIndex = 0;
 export function playDraw() {
@@ -61,25 +66,46 @@ export function playDraw() {
   if (now - lastDrawTime < 0.04) return;
   lastDrawTime = now;
 
-  // Идём по нотам по кругу — получается восходящая мелодия,
-  // плюс рандомные перескоки для разнообразия
   drawNoteIndex =
-    (drawNoteIndex + (Math.random() < 0.7 ? 1 : 2)) %
-    MARIO_PENTATONIC.length;
-  const freq = MARIO_PENTATONIC[drawNoteIndex];
+    (drawNoteIndex + (Math.random() < 0.7 ? 1 : 2)) % THOCK_NOTES.length;
+  const baseFreq = THOCK_NOTES[drawNoteIndex];
 
-  const osc = c.createOscillator();
-  const gain = c.createGain();
-  osc.type = "square";
-  osc.frequency.setValueAtTime(freq, now);
-  // Чуть приукрашиваем — лёгкий glide вверх как у NES-arp
-  osc.frequency.linearRampToValueAtTime(freq * 1.05, now + 0.04);
-  osc.connect(gain).connect(c.destination);
-  gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.022, now + 0.002);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
-  osc.start(now);
-  osc.stop(now + 0.07);
+  // 1) Корпус — низкий triangle, проходит через lowpass для глухости.
+  const body = c.createOscillator();
+  const bodyGain = c.createGain();
+  const lp = c.createBiquadFilter();
+  lp.type = "lowpass";
+  lp.frequency.value = 900;
+  lp.Q.value = 0.4;
+  body.type = "triangle";
+  body.frequency.setValueAtTime(baseFreq * 1.1, now);
+  body.frequency.exponentialRampToValueAtTime(baseFreq * 0.85, now + 0.04);
+  body.connect(bodyGain).connect(lp).connect(c.destination);
+  bodyGain.gain.setValueAtTime(0, now);
+  bodyGain.gain.linearRampToValueAtTime(0.035, now + 0.003);
+  bodyGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+  body.start(now);
+  body.stop(now + 0.08);
+
+  // 2) Атака — короткий band-passed шум, имитирует тактильный «тук».
+  const noiseLen = Math.max(1, Math.floor(c.sampleRate * 0.025));
+  const noiseBuf = c.createBuffer(1, noiseLen, c.sampleRate);
+  const nd = noiseBuf.getChannelData(0);
+  for (let i = 0; i < noiseLen; i++) {
+    nd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / noiseLen, 3);
+  }
+  const noise = c.createBufferSource();
+  noise.buffer = noiseBuf;
+  const bp = c.createBiquadFilter();
+  bp.type = "bandpass";
+  bp.frequency.value = 1800;
+  bp.Q.value = 1.4;
+  const noiseGain = c.createGain();
+  noiseGain.gain.setValueAtTime(0.018, now);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+  noise.connect(bp).connect(noiseGain).connect(c.destination);
+  noise.start(now);
+  noise.stop(now + 0.03);
 }
 
 // ─── Звук удара floater'ов друг о друга — короткий «тук» с гасанием ────
@@ -101,7 +127,7 @@ export function playCollide(impactVel = 1) {
   osc.frequency.setValueAtTime(freq, now);
   osc.frequency.exponentialRampToValueAtTime(freq * 0.55, now + 0.05);
   osc.connect(gain).connect(c.destination);
-  const vol = Math.min(0.03 + intensity * 0.025, 0.13);
+  const vol = Math.min(0.025 + intensity * 0.021, 0.108);
   gain.gain.setValueAtTime(0, now);
   gain.gain.linearRampToValueAtTime(vol, now + 0.002);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
@@ -124,7 +150,7 @@ export function playRelease() {
     osc.frequency.setValueAtTime(freq, start);
     osc.connect(gain).connect(c.destination);
     gain.gain.setValueAtTime(0, start);
-    gain.gain.linearRampToValueAtTime(0.16, start + 0.01);
+    gain.gain.linearRampToValueAtTime(0.133, start + 0.01);
     gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.18);
     osc.start(start);
     osc.stop(start + 0.2);
@@ -142,7 +168,7 @@ export function playClear() {
   osc.frequency.setValueAtTime(680, now);
   osc.frequency.exponentialRampToValueAtTime(110, now + 0.22);
   osc.connect(gain).connect(c.destination);
-  gain.gain.setValueAtTime(0.12, now);
+  gain.gain.setValueAtTime(0.1, now);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
   osc.start(now);
   osc.stop(now + 0.27);
@@ -160,7 +186,7 @@ export function playClick() {
   osc.frequency.exponentialRampToValueAtTime(540, now + 0.04);
   osc.connect(gain).connect(c.destination);
   gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.08, now + 0.003);
+  gain.gain.linearRampToValueAtTime(0.067, now + 0.003);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
   osc.start(now);
   osc.stop(now + 0.08);
@@ -178,44 +204,15 @@ export function playZoom() {
   osc.frequency.exponentialRampToValueAtTime(1150, now + 0.13);
   osc.connect(gain).connect(c.destination);
   gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.1, now + 0.008);
+  gain.gain.linearRampToValueAtTime(0.083, now + 0.008);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
   osc.start(now);
   osc.stop(now + 0.18);
 }
 
-// ─── «Свуш» при навигации внутри проекта — чёткий нисходящий sine-sweep
+// ─── Навигация внутри проекта — тот же звук, что у zoom.
 export function playSwoosh() {
-  const c = getCtx();
-  if (!c) return;
-  const now = c.currentTime;
-  const duration = 0.18;
-
-  // Базовый тон: sine 1500→260 Hz, exp-кривая = ощущение пролёта
-  const osc = c.createOscillator();
-  const gain = c.createGain();
-  osc.type = "sine";
-  osc.frequency.setValueAtTime(1500, now);
-  osc.frequency.exponentialRampToValueAtTime(260, now + duration);
-  osc.connect(gain).connect(c.destination);
-  gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.16, now + 0.005);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-  osc.start(now);
-  osc.stop(now + duration + 0.03);
-
-  // Лёгкая «подкладка» — triangle на октаву ниже для воздуха
-  const sub = c.createOscillator();
-  const subGain = c.createGain();
-  sub.type = "triangle";
-  sub.frequency.setValueAtTime(750, now);
-  sub.frequency.exponentialRampToValueAtTime(130, now + duration);
-  sub.connect(subGain).connect(c.destination);
-  subGain.gain.setValueAtTime(0, now);
-  subGain.gain.linearRampToValueAtTime(0.05, now + 0.008);
-  subGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-  sub.start(now);
-  sub.stop(now + duration + 0.03);
+  playZoom();
 }
 
 // ─── Кнопка «назад на главную»: нисходящий двойной sine — зеркало playProjectClick
@@ -231,7 +228,7 @@ export function playBack() {
   osc1.frequency.setValueAtTime(1100, now);
   osc1.connect(g1).connect(c.destination);
   g1.gain.setValueAtTime(0, now);
-  g1.gain.linearRampToValueAtTime(0.1, now + 0.005);
+  g1.gain.linearRampToValueAtTime(0.083, now + 0.005);
   g1.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
   osc1.start(now);
   osc1.stop(now + 0.14);
@@ -242,7 +239,7 @@ export function playBack() {
   osc2.frequency.setValueAtTime(660, now + 0.02);
   osc2.connect(g2).connect(c.destination);
   g2.gain.setValueAtTime(0, now + 0.02);
-  g2.gain.linearRampToValueAtTime(0.12, now + 0.025);
+  g2.gain.linearRampToValueAtTime(0.1, now + 0.025);
   g2.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
   osc2.start(now + 0.02);
   osc2.stop(now + 0.18);
@@ -261,7 +258,7 @@ export function playProjectClick() {
   osc1.frequency.setValueAtTime(880, now);
   osc1.connect(g1).connect(c.destination);
   g1.gain.setValueAtTime(0, now);
-  g1.gain.linearRampToValueAtTime(0.12, now + 0.005);
+  g1.gain.linearRampToValueAtTime(0.1, now + 0.005);
   g1.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
   osc1.start(now);
   osc1.stop(now + 0.14);
@@ -273,7 +270,7 @@ export function playProjectClick() {
   osc2.frequency.setValueAtTime(1318, now + 0.02);
   osc2.connect(g2).connect(c.destination);
   g2.gain.setValueAtTime(0, now + 0.02);
-  g2.gain.linearRampToValueAtTime(0.06, now + 0.025);
+  g2.gain.linearRampToValueAtTime(0.05, now + 0.025);
   g2.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
   osc2.start(now + 0.02);
   osc2.stop(now + 0.16);
@@ -322,6 +319,6 @@ export function playToggle() {
     osc.stop(at + 0.045);
   };
 
-  tick(now, 0.45); // нажатие — громче
-  tick(now + 0.055, 0.24); // отпускание — тише
+  tick(now, 0.375); // нажатие — громче
+  tick(now + 0.055, 0.2); // отпускание — тише
 }
