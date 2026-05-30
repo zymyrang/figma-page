@@ -59,6 +59,8 @@
   /* Свечение для «Опыт»: вспышки дашей/точек */
   --exp-glow-strong: rgba(247, 247, 247, 0.5);
   --exp-glow-soft: rgba(247, 247, 247, 0.25);
+  /* Тусклая фаза лампочки-инсайта (между вспышками) */
+  --bulb-dim: #4a4a4a;
 }
 html.light {
   --bg: #f4f4f4;
@@ -70,6 +72,7 @@ html.light {
   --pp-border: rgba(0, 0, 0, 0.15);
   --exp-glow-strong: rgba(19, 19, 19, 0.45);
   --exp-glow-soft: rgba(19, 19, 19, 0.18);
+  --bulb-dim: #c5c5c5;
 }
 
 /* Плавный переход между темами. Класс вешается на <html> только на
@@ -209,7 +212,7 @@ html {
   }
   50%,
   100% {
-    color: #4a4a4a;
+    color: var(--bulb-dim);
     filter: none;
   }
 }

@@ -264,7 +264,7 @@ function CausesChips({ items }: { items: readonly string[] | string[] }) {
       {items.map((text, i) => (
         <span
           key={text}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2a2a2a] border border-[#3a3a3a] text-[14px] leading-[18px] text-[var(--fg)] font-medium whitespace-nowrap"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-hover)] border border-[var(--border)] text-[14px] leading-[18px] text-[var(--fg)] font-medium whitespace-nowrap"
           style={
             visible
               ? ({
