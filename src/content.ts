@@ -631,7 +631,7 @@ const enContent = {
     readCase: "read case",
     comingSoon: "coming soon",
     hypothesis: "Hypothesis",
-    solution: "Solution",
+    solution: "What we tested",
     result: "Result",
     variantA: "Variant A",
     variantB: "Variant B",
