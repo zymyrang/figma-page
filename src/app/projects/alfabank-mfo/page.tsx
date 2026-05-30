@@ -435,7 +435,7 @@ export default function AlfabankMfoPage() {
         href="/"
         aria-label={ui.back}
         onClick={() => playBack()}
-        className="fixed left-[31px] top-[20px] gap-2 hidden sm:flex items-center text-[15px] text-[var(--fg)]/70 hover:text-[var(--fg)] transition-colors z-50"
+        className="fixed left-[31px] top-[20px] gap-2 hidden sm:flex items-center text-[15px] text-[var(--fg)] z-50"
       >
         <ArrowBack className="size-[16px]" />
         {ui.back}
