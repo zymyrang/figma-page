@@ -76,7 +76,7 @@ export function playDraw() {
   osc.frequency.linearRampToValueAtTime(freq * 1.05, now + 0.04);
   osc.connect(gain).connect(c.destination);
   gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.05, now + 0.002);
+  gain.gain.linearRampToValueAtTime(0.022, now + 0.002);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
   osc.start(now);
   osc.stop(now + 0.07);

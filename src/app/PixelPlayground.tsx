@@ -659,10 +659,13 @@ export default function PixelPlayground() {
           ref={drawRef}
           width={360}
           height={200}
-          className="block w-[360px] h-[200px] bg-[var(--pp-fill)] border border-[var(--pp-border)] rounded-[8px] cursor-crosshair"
+          className="block w-[360px] h-[200px] bg-[var(--pp-fill)] border border-[var(--pp-border)] rounded-[8px]"
           style={{
             imageRendering: "pixelated",
             touchAction: "none",
+            // Карандашный курсор: hotspot — на кончике грифеля (2, 22).
+            cursor:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M2 22 L5 19 L7 21 Z' fill='%23222'/><path d='M5 19 L18 6 L20 8 L7 21 Z' fill='%23F5BC1C' stroke='%23222' stroke-width='0.8' stroke-linejoin='round'/><path d='M18 6 L20 4 L22 6 L20 8 Z' fill='%23E85D5D' stroke='%23222' stroke-width='0.8' stroke-linejoin='round'/></svg>\") 2 22, crosshair",
           }}
         />
         <div
