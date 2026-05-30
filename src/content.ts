@@ -70,6 +70,7 @@ const ruContent = {
     variantB: "Вариант B",
     why: "Почему так",
     step: "шаг",
+    back: "Назад",
   },
 
   site: {
@@ -636,6 +637,7 @@ const enContent = {
     variantB: "Variant B",
     why: "Why",
     step: "step",
+    back: "Back",
   },
 
   site: {

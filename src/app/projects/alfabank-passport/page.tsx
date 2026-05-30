@@ -750,7 +750,7 @@ const ArrowBack = ({ className = "" }: { className?: string }) => (
     aria-hidden
   >
     <path
-      d="M10 3L5 8l5 5"
+      d="M14 8H2M2 8L7 3M2 8L7 13"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -836,12 +836,12 @@ export default function AlfabankPassportPage() {
     <main className="min-h-screen w-full bg-[var(--bg)] text-[var(--fg)] flex justify-center relative">
       <Link
         href="/"
-        aria-label="Назад в проект Альфа-Банк"
+        aria-label={ui.back}
         onClick={() => playBack()}
-        className="fixed left-[31px] top-[16px] h-[48px] px-5 gap-2 rounded-full bg-[var(--card)] border border-[var(--border)] hidden sm:flex items-center justify-center hover:bg-[var(--card-hover)] transition-colors z-50 text-[15px] text-[var(--fg)]"
+        className="fixed left-[31px] top-[20px] gap-2 hidden sm:flex items-center text-[15px] text-[var(--fg)]/70 hover:text-[var(--fg)] transition-colors z-50"
       >
         <ArrowBack className="size-[16px]" />
-        Back
+        {ui.back}
       </Link>
 
       <SectionNav sections={alfabankPassport.toc} />
