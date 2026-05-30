@@ -1168,7 +1168,7 @@ const enContent = {
       learningsTitle: "What I learned along the way",
       learnings: [
         "18% use the edit mode for recognized fields — without it, we'd be fielding complaints about “it recognized this wrong.”",
-        "It matters to give users a choice — fill via passport or by hand. There are cases when the passport isn't nearby but the person remembers the details by heart; without the alternative, that user just drops off. This is going into the Q2 2026 follow-up.",
+        "It matters to give users a choice — fill via passport or by hand. There are cases when the passport isn't nearby but the person remembers the details; without the alternative, that user just drops off. This is going into the Q2 2026 follow-up.",
       ],
       futureTitle: "What I'd still like to do",
       future: [
