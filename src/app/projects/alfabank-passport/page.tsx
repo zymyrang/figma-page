@@ -938,7 +938,7 @@ export default function AlfabankPassportPage() {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-1 gap-3 mx-auto mt-4 max-w-[340px] sm:grid-cols-2 sm:gap-4 sm:mt-6 sm:max-w-[540px]">
+            <div className="grid grid-cols-1 gap-6 mx-auto mt-4 max-w-[340px] sm:grid-cols-2 sm:gap-8 sm:mt-6 sm:max-w-[540px]">
               {alfabankPassport.context.howItWasShots.map((src) => (
                 <MediaWithLightbox
                   key={src}
