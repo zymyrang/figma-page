@@ -645,7 +645,7 @@ const enContent = {
     navLinks: [
       {
         label: "CV",
-        href: "https://drive.google.com/file/d/11nOH5NaczEexxvZH3ePcLQRjeVNg-3fj/view?usp=sharing",
+        href: "https://drive.google.com/file/d/11gTwldmaD61G-1-2c-gWL0TIdfsG3mcR/view?usp=drive_link",
       },
       { label: "Telegram", href: "https://t.me/unluckycat1" },
       {
