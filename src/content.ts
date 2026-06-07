@@ -93,9 +93,10 @@ const ruContent = {
 
   home: {
     bio: {
+      greetingWords: ["Привет!", "Hi!", "こんにちは!", "مرحبا!"],
+      name: "Я Жаркын.",
       prefix:
-        "Продуктовый дизайнер c 6 лет опыта \nпроектирования различных B2C, B2B продуктов в",
-      rotatingWords: ["финтехе", "телекоме", "e-commerce"],
+        "Продуктовый дизайнер c 6 лет опыта \nпроектирования различных B2C, B2B продуктов в финтехе и телекоме.",
     },
     experience: {
       label: "Опыт",
@@ -661,9 +662,10 @@ const enContent = {
 
   home: {
     bio: {
+      greetingWords: ["Hi!", "Bonjour!", "こんにちは!", "مرحبا!"],
+      name: "I'm Zharkyn.",
       prefix:
-        "Product designer with 6 years of experience \ndesigning B2C and B2B products in",
-      rotatingWords: ["fintech", "telecom", "e-commerce"],
+        "Product designer with 6 years of experience \ndesigning B2C and B2B products in fintech and telecom.",
     },
     experience: {
       label: "Experience",

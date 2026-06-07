@@ -45,6 +45,9 @@ function ExperienceTimeline({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  // Счётчик циклов: меняем key анимируемого блока, чтобы вся хореография
+  // (полёт самолёта + вспышки дашей + пульсы точек) перезапускалась по кругу.
+  const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -64,9 +67,16 @@ function ExperienceTimeline({
     return () => observer.disconnect();
   }, []);
 
+  // Перезапуск каждые ~11s (полёт 9s + небольшая пауза на «посадку»).
+  useEffect(() => {
+    if (!visible) return;
+    const id = window.setInterval(() => setCycle((c) => c + 1), 11000);
+    return () => window.clearInterval(id);
+  }, [visible]);
+
   return (
     <div ref={ref} className="relative px-4">
-      <div className="relative">
+      <div key={cycle} className="relative">
         {/* Линия из отдельных «дашей»: каждый — span с задержкой анимации,
             подобранной так, чтобы белая вспышка совпадала с пролётом
             самолёта. Большие дашики 10×2px. */}
@@ -427,13 +437,15 @@ function FaceIdAnimation() {
   );
 }
 
-// Слово, которое циклически меняется (финтех → телеком → e-commerce → …).
-// Между словами короткий fade+slide вверх/вниз, чтобы переход был
-// заметным, но не вырвиглазным.
+// Слово, которое циклически меняется (приветствие на разных языках → …).
+// Между словами короткий fade+slide вверх, чтобы переход был заметным,
+// но не вырвиглазным. Ширина — по текущему слову (без резерва под самое
+// длинное), поэтому текст рядом сдвигается при смене — это ок. dir="auto"
+// корректно рендерит арабский (RTL) и японский.
 function RotatingWord({
   words,
-  interval = 1400,
-  duration = 180,
+  interval = 1600,
+  duration = 220,
 }: {
   words: readonly string[];
   /** Сколько ms показывается каждое слово целиком, прежде чем уйти */
@@ -456,28 +468,17 @@ function RotatingWord({
     return () => window.clearInterval(id);
   }, [words.length, interval, duration]);
 
-  // Ширина зарезервирована под самое длинное слово, чтобы окружающий
-  // текст не «прыгал» при смене.
-  const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
   return (
     <span
-      className="relative inline-block align-baseline"
-      style={{ minWidth: `${longest.length}ch` }}
+      dir="auto"
+      className="inline-block whitespace-nowrap align-baseline will-change-transform"
+      style={{
+        opacity: phase === "in" ? 1 : 0,
+        transform: phase === "in" ? "translateY(0)" : "translateY(-8px)",
+        transition: `opacity ${duration}ms ease-out, transform ${duration}ms ease-out`,
+      }}
     >
-      {/* «Призрак» — задаёт ширину контейнера, никогда не виден */}
-      <span aria-hidden className="invisible whitespace-nowrap">
-        {longest}
-      </span>
-      <span
-        className="absolute left-0 top-0 whitespace-nowrap will-change-transform"
-        style={{
-          opacity: phase === "in" ? 1 : 0,
-          transform: phase === "in" ? "translateY(0)" : "translateY(-8px)",
-          transition: `opacity ${duration}ms ease-out, transform ${duration}ms ease-out`,
-        }}
-      >
-        {words[index]}
-      </span>
+      {words[index]}
     </span>
   );
 }
@@ -703,10 +704,16 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={240} y={32}>
-            <p className="text-[25.3px] leading-[30.16px] text-[var(--fg)] whitespace-normal font-medium sm:whitespace-pre-line">
-              {home.bio.prefix}{" "}
-              <RotatingWord words={home.bio.rotatingWords} />
-            </p>
+            <div className="flex flex-col gap-4 sm:gap-5">
+              <p className="text-[25.3px] leading-[30.16px] text-[var(--fg)] font-medium">
+                <RotatingWord key={lang} words={home.bio.greetingWords} />
+                <br />
+                {home.bio.name}
+              </p>
+              <p className="text-[25.3px] leading-[30.16px] text-[var(--fg)] whitespace-normal font-medium sm:whitespace-pre-line">
+                {home.bio.prefix}
+              </p>
+            </div>
           </Reveal>
         </section>
 
