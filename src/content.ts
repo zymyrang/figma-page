@@ -403,6 +403,7 @@ const ruContent = {
         { value: "8 минут", label: "среднее время заполнения" },
         { value: "35%", label: "бросали на блоке паспорта" },
       ],
+      howItWasLabel: "Как выглядел раздел до",
       howItWasShots: [
         "/projects/alfabank/pasp-howitwas1-ru.png",
         "/projects/alfabank/pasp-howitwas2-ru.png",
@@ -980,6 +981,7 @@ const enContent = {
         { value: "8 minutes", label: "average completion time" },
         { value: "35%", label: "dropped off at the passport block" },
       ],
+      howItWasLabel: "How the section looked before",
       howItWasShots: [
         "/projects/alfabank/pasp-howitwas1-en.png",
         "/projects/alfabank/pasp-howitwas2-en.png",

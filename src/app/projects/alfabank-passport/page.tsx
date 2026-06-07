@@ -940,14 +940,19 @@ export default function AlfabankPassportPage() {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-1 gap-6 mx-auto mt-4 max-w-[340px] sm:grid-cols-2 sm:gap-8 sm:mt-6 sm:max-w-[540px]">
-              {alfabankPassport.context.howItWasShots.map((src) => (
-                <MediaWithLightbox
-                  key={src}
-                  src={src}
-                  className="block w-full h-auto rounded-[24px]"
-                />
-              ))}
+            <div className="flex flex-col gap-3 mt-4 sm:mt-6">
+              <span className="text-[11px] leading-[14px] uppercase tracking-[0.88px] text-[var(--fg)]/50 text-center">
+                {alfabankPassport.context.howItWasLabel}
+              </span>
+              <div className="grid grid-cols-1 gap-6 mx-auto w-full max-w-[340px] sm:grid-cols-2 sm:gap-8 sm:max-w-[540px]">
+                {alfabankPassport.context.howItWasShots.map((src) => (
+                  <MediaWithLightbox
+                    key={src}
+                    src={src}
+                    className="block w-full h-auto rounded-[24px]"
+                  />
+                ))}
+              </div>
             </div>
           </section>
         </Reveal>
