@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SectionNav from "./SectionNav";
 import MediaWithLightbox from "../alfabank/MediaWithLightbox";
+import BeforeAfterSlider from "../alfabank/BeforeAfterSlider";
 import Marquee from "../../Marquee";
 import Reveal from "../../Reveal";
 import SiteHeader from "../../SiteHeader";
@@ -1085,24 +1086,14 @@ export default function AlfabankPassportPage() {
                       {h.hypothesis}
                     </p>
                     {hasVariants && (
-                      <div className="grid grid-cols-1 gap-[62px] mt-4 mb-3 mx-auto max-w-[280px] sm:grid-cols-2 sm:mt-6 sm:mb-5 sm:max-w-[500px]">
-                        {[
-                          { label: ui.variantA, src: hh.variantA! },
-                          { label: ui.variantB, src: hh.variantB! },
-                        ].map((v) => (
-                          <div
-                            key={v.label}
-                            className="flex flex-col gap-4"
-                          >
-                            <span className="text-[11px] leading-[14px] uppercase tracking-[0.88px] text-[var(--fg)]/50 text-center">
-                              {v.label}
-                            </span>
-                            <MediaWithLightbox
-                              src={v.src}
-                              className="w-full h-auto rounded-[24px]"
-                            />
-                          </div>
-                        ))}
+                      <div className="mt-4 mb-3 mx-auto w-full max-w-[280px] sm:mt-6 sm:mb-5 sm:max-w-[320px]">
+                        <BeforeAfterSlider
+                          before={hh.variantA!}
+                          after={hh.variantB!}
+                          beforeLabel={ui.variantA}
+                          afterLabel={ui.variantB}
+                          className="w-full"
+                        />
                       </div>
                     )}
                     <div className="flex flex-col gap-0 mt-1 whitespace-pre-line">
