@@ -447,11 +447,8 @@ const ruContent = {
         { label: "TIME", from: "8m", to: "1m" },
         { label: "SUBMIT RATE", from: "45%", to: "70%" },
       ],
-      marquee: [
-        "Сократить заполнение с 8 до ~3 минут",
-        "Снизить отвал на паспортном блоке с 35% до <20%",
-        "Поднять take rate с 7% до 10%+",
-      ],
+      marquee: ["8 → 3 мин", "Отвал 35% → <20%", "Take rate 7% → 10%+"],
+      body: "Сократить заполнение формы с 8 до ~3 минут. Снизить отвал на паспортном блоке с 35% до <20%. Поднять take rate с 7% до 10%+.",
     },
     role: {
       label: "Моя роль",
@@ -484,7 +481,7 @@ const ruContent = {
       label: "Юзерфлоу",
       body: "Поняли, что поля «семейное положение» и «образование» не дают прироста точности выдачи — их вклад в предсказание дефолта оказался статистически незначимым. С учётом комментариев пользователей на интервью эти поля убрали. Сам заём пользователь получает уже в авторизованной зоне — внутри приложения банка.",
       bodyExtra:
-        "Согласие на обработку биометрии встроили в шаг проверки данных — юристы требовали отдельный экран, договорились на чекбокс с раскрывающимся текстом, чтобы не добавлять лишний шаг.",
+        "Фото паспорта и селфи закрывают не только заполнение формы, но и KYC (know your customer — обязательную идентификацию клиента). Согласие на обработку биометрии встроили в шаг проверки данных — юристы требовали отдельный экран, договорились на чекбокс с раскрывающимся текстом, чтобы не добавлять лишний шаг.",
       before: {
         title: "Было",
         steps: [
@@ -543,16 +540,25 @@ const ruContent = {
       label: "Ошибки и крайние случаи",
       items: [
         {
-          title: "Плохое распознавание",
-          body: "Если система не уверена в каком-то поле, оно подсвечивается и фокус ставится на него — пользователь правит одно поле, а не перепроверяет все десять.",
+          title: "Редактирование полей",
+          body: "Распознанные данные пользователь видит на экране проверки: может перепроверить их и отредактировать любое поле перед отправкой.",
+          shots: [
+            "/projects/alfabank/cc1-edit-ru.png",
+            "/projects/alfabank/cc1-edit-active-ru.png",
+          ],
         },
         {
           title: "Темно / блики",
           body: "Подсказки прямо в камере: «поднесите ближе», «слишком темно». Фонарик включается автоматически при низкой освещённости.",
+          shots: [
+            "/projects/alfabank/cc2-too-dark-ru.png",
+            "/projects/alfabank/cc2-too-bright-ru.png",
+          ],
         },
         {
           title: "Селфи не прошло liveness",
-          body: "Даём 3 попытки с подсказкой, что не так (очки, тень, лицо не в рамке), после — переключаем на ручной ввод, а не выкидываем из заявки.",
+          body: "Даём 5 попыток с фото. Если не получилось — переключаем на ручной ввод.",
+          shots: ["/projects/alfabank/cc3-manual-ru.png"],
         },
       ],
     },
@@ -616,7 +622,7 @@ const ruContent = {
       body: "После релиза собирали метрики 2 месяца. АБ-тест: 50% трафика — новый флоу, 50% — старая анкета. Тестовая группа уверенно обогнала контрольную, и флоу выкатили на 100%.",
       stats: [
         { value: "в 2 раза", description: "быстрее заполнение анкеты" },
-        { value: "7% → 15%", description: "take rate" },
+        { value: "7% → 15%", description: "take rate", note: "вдвое выше цели в 10%" },
         { value: "+ 200 млн ₽", description: "доход за 2025" },
       ],
       statsNote:
@@ -1055,11 +1061,8 @@ const enContent = {
         { label: "TIME", from: "8m", to: "1m" },
         { label: "SUBMIT RATE", from: "45%", to: "70%" },
       ],
-      marquee: [
-        "Cut form filling from 8 to ~3 minutes",
-        "Cut passport-block drop-off from 35% to <20%",
-        "Lift take rate from 7% to 10%+",
-      ],
+      marquee: ["8 → 3 min", "Drop-off 35% → <20%", "Take rate 7% → 10%+"],
+      body: "Cut form filling from 8 to ~3 minutes. Cut passport-block drop-off from 35% to <20%. Lift take rate from 7% to 10%+.",
     },
     role: {
       label: "My role",
@@ -1092,7 +1095,7 @@ const enContent = {
       label: "User flow",
       body: "Turns out the \"marital status\" and \"education\" fields weren't adding any accuracy — their effect on default prediction was statistically insignificant. That, plus what users told us in interviews, led us to remove them.",
       bodyExtra:
-        "We built the biometrics-processing consent into the data-review step — legal wanted a separate screen, but we settled on a checkbox with expandable text so we wouldn't add an extra step.",
+        "The passport photo and selfie cover not just filling out the form but also KYC (know your customer — the mandatory client identification). We built the biometrics-processing consent into the data-review step — legal wanted a separate screen, but we settled on a checkbox with expandable text so we wouldn't add an extra step.",
       before: {
         title: "Before",
         steps: [
@@ -1151,16 +1154,25 @@ const enContent = {
       label: "Errors and edge cases",
       items: [
         {
-          title: "Poor recognition",
-          body: "If the system isn't confident about a field, it gets highlighted and focused — the user fixes one field instead of re-checking all ten.",
+          title: "Field editing",
+          body: "The user sees the recognized data on the review screen: they can double-check it and edit any field before submitting.",
+          shots: [
+            "/projects/alfabank/cc1-edit-en.png",
+            "/projects/alfabank/cc1-edit-active-en.png",
+          ],
         },
         {
           title: "Dark / glare",
           body: "Hints right in the camera: “move closer,” “too dark.” The flashlight turns on automatically in low light.",
+          shots: [
+            "/projects/alfabank/cc2-too-dark-en.png",
+            "/projects/alfabank/cc2-too-bright-en.png",
+          ],
         },
         {
           title: "Selfie failed liveness",
-          body: "We give 3 attempts with a hint about what's wrong (glasses, shadow, face out of frame), then switch to manual entry rather than dropping them out of the application.",
+          body: "We give 5 photo attempts. If it still doesn't work — we switch to manual entry.",
+          shots: ["/projects/alfabank/cc3-manual-en.png"],
         },
       ],
     },
@@ -1224,7 +1236,7 @@ const enContent = {
       body: "After release we collected metrics for 2 months. An A/B test: 50% of traffic on the new flow, 50% on the old form. The test group clearly beat the control, and the flow was rolled out to 100%.",
       stats: [
         { value: "×2", description: "faster form completion" },
-        { value: "7% → 15%", description: "take rate" },
+        { value: "7% → 15%", description: "take rate", note: "twice the 10% goal" },
         { value: "+ $2M", description: "2025 revenue" },
       ],
       statsNote:

@@ -796,9 +796,14 @@ const Asterisk = ({ className = "" }: { className?: string }) => (
 function PhoneMockup({
   src,
   className = "",
+  showIsland = true,
 }: {
   src: string;
   className?: string;
+  /** Показывать ли Dynamic Island. Для скринов, где важна верхняя часть
+      экрана (например, корнер-кейсы с готовыми статус-барами), выключаем,
+      чтобы островок не перекрывал контент. */
+  showIsland?: boolean;
 }) {
   return (
     <div
@@ -807,7 +812,9 @@ function PhoneMockup({
       <div className="relative overflow-hidden rounded-[25px] bg-black">
         <MediaWithLightbox src={src} className="block w-full h-auto" />
         {/* Dynamic Island */}
-        <div className="pointer-events-none absolute left-1/2 top-[7px] z-10 h-[16px] w-[30%] -translate-x-1/2 rounded-full bg-black" />
+        {showIsland ? (
+          <div className="pointer-events-none absolute left-1/2 top-[7px] z-10 h-[16px] w-[30%] -translate-x-1/2 rounded-full bg-black" />
+        ) : null}
       </div>
     </div>
   );
@@ -1001,9 +1008,14 @@ export default function AlfabankPassportPage() {
           </Reveal>
           <Marquee
             items={alfabankPassport.goals.marquee}
-            speed={22}
+            speed={12}
             colors={["#FF3B5C", "#3B7BFF", "#1FC54C"]}
           />
+          <Reveal>
+            <p className="px-4 text-[16px] leading-[22px] text-[var(--fg)]/100">
+              {alfabankPassport.goals.body}
+            </p>
+          </Reveal>
         </section>
 
         {/* Дискавери */}
@@ -1155,19 +1167,34 @@ export default function AlfabankPassportPage() {
               <h2 className={HEADING}>{alfabankPassport.edgeCases.label}</h2>
             </div>
             <div className="flex flex-col gap-3">
-              {alfabankPassport.edgeCases.items.map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] p-4 flex flex-col gap-2"
-                >
-                  <span className="text-[16px] leading-[22px] text-[var(--fg)] font-medium">
-                    {item.title}
-                  </span>
-                  <p className="text-[14px] leading-[20px] text-[var(--fg)]/70">
-                    {item.body}
-                  </p>
-                </div>
-              ))}
+              {alfabankPassport.edgeCases.items.map((item) => {
+                const shots = (item as { shots?: string[] }).shots;
+                return (
+                  <div
+                    key={item.title}
+                    className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] p-4 flex flex-col gap-2"
+                  >
+                    <span className="text-[16px] leading-[22px] text-[var(--fg)] font-medium">
+                      {item.title}
+                    </span>
+                    <p className="text-[14px] leading-[20px] text-[var(--fg)]/70">
+                      {item.body}
+                    </p>
+                    {shots && shots.length > 0 ? (
+                      <div className="flex flex-wrap items-start justify-center gap-3 pt-3 sm:gap-4">
+                        {shots.map((src) => (
+                          <PhoneMockup
+                            key={src}
+                            src={src}
+                            showIsland={false}
+                            className="w-[210px] sm:w-[248px]"
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
             </div>
           </section>
         </Reveal>
@@ -1221,19 +1248,27 @@ export default function AlfabankPassportPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {alfabankPassport.postanalysis.stats.map((s) => (
-                <div
-                  key={s.value}
-                  className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] p-4 flex flex-col gap-1"
-                >
-                  <span className="font-bold text-[22px] leading-[28px] text-[var(--fg)]">
-                    {s.value}
-                  </span>
-                  <span className="text-[13px] leading-[18px] text-[var(--fg)]/70">
-                    {s.description}
-                  </span>
-                </div>
-              ))}
+              {alfabankPassport.postanalysis.stats.map((s) => {
+                const note = (s as { note?: string }).note;
+                return (
+                  <div
+                    key={s.value}
+                    className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] p-4 flex flex-col gap-1"
+                  >
+                    <span className="font-bold text-[22px] leading-[28px] text-[var(--fg)]">
+                      {s.value}
+                    </span>
+                    <span className="text-[13px] leading-[18px] text-[var(--fg)]/70">
+                      {s.description}
+                    </span>
+                    {note ? (
+                      <span className="text-[12px] leading-[16px] text-[#0CC44D] font-medium mt-0.5">
+                        {note}
+                      </span>
+                    ) : null}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Сноска: как считали инкремент дохода */}
