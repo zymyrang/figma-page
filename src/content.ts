@@ -107,7 +107,7 @@ const ruContent = {
         href: "/projects/alfabank-passport",
         name: "Как анкета с селфи принесла \n+50 млн за 2025",
         tags: "",
-        description: "Сократили время заполнения анкеты — вместо заполнения полей теперь можно сфоткать паспорт.",
+        description: "Сократил время заполнения анкеты — вместо заполнения полей теперь можно сфоткать паспорт.",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
@@ -115,9 +115,9 @@ const ruContent = {
       },
       {
         href: "/projects/alfabank-mfo",
-        name: "Подняли конверсию \nи take rate в 2 раза у микрозаймов",
+        name: "Поднял конверсию \nи take rate в 2 раза у микрозаймов",
         tags: "",
-        description: "Переработали страницу микрозаймов на сайте.",
+        description: "Переработал страницу микрозаймов на сайте.",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
@@ -128,9 +128,9 @@ const ruContent = {
     tbankProjects: [
       {
         href: "#",
-        name: "Как мы делали сложную онлайн-бухгалтерию простой",
+        name: "Как я делал сложную онлайн-бухгалтерию простой",
         tags: "",
-        description: "Увеличили кол-во подаваемых деклараций в 3 раза через удобный интерфейс в приложении.",
+        description: "Увеличил кол-во подаваемых деклараций в 3 раза через удобный интерфейс в приложении.",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
@@ -176,7 +176,7 @@ const ruContent = {
   alfabankMfo: {
     intro: {
       title: "МФО",
-      body: "Четыре гипотезы и AB-тесты на странице микрозаймов на сайте Альфа-Банка. В два раза подняли общий CR, в полтора — Take Rate займов.",
+      body: "Четыре гипотезы и AB-тесты на странице микрозаймов на сайте Альфа-Банка. В два раза поднял общий CR, в полтора — Take Rate займов.",
     },
     toc: [
       { id: "context", label: "Контекст" },
@@ -187,12 +187,12 @@ const ruContent = {
       { id: "quick-offers", label: "Быстрые офферы" },
       { id: "postanalysis", label: "Постанализ" },
     ],
-    projectTitle: "Как мы подняли конверсию \nи take rate в 2 раза у микрозаймов",
+    projectTitle: "Как я поднял конверсию \nи take rate в 2 раза у микрозаймов",
     summary: {
-      body: "Переработали страницу микрозаймов на сайте Альфа-Банка. \nКонверсия в заявку выросла в 2 раза, Take Rate займов — в ~2 раза.",
+      body: "Переработал страницу микрозаймов на сайте Альфа-Банка. \nКонверсия в заявку выросла в 2 раза, Take Rate займов — в ~2 раза.",
       stats: [
-        { value: "в 2 раза", description: "повысили общую конверсию в заявку" },
-        { value: "в 1.5 раза", description: "повысили Take Rate займов" },
+        { value: "в 2 раза", description: "повысил общую конверсию в заявку" },
+        { value: "в 1.5 раза", description: "повысил Take Rate займов" },
       ],
     },
     credits: [
@@ -222,7 +222,7 @@ const ruContent = {
     },
     problem: {
       title: "А в чём тогда проблема?",
-      body: "Мы уже давно понимали, что страница устарела и было ощущение, \nчто мы недополучаем конверсию. Промониторили сеансы по вебвизору, поговорили с пользователями на интервью и выяснили:",
+      body: "Я уже давно понимал, что страница устарела и было ощущение, \nчто я недополучаю конверсию. Промониторил сеансы по вебвизору, поговорил с пользователями на интервью и выяснил:",
       stats: [
         {
           value: "34%",
@@ -239,7 +239,7 @@ const ruContent = {
       taskGoals:
         "Цель на квартал: поднять CR с 10% и TR с 9%. Сверх продуктовой задачи — пилотировать новый UI Альфа-Банка на этой странице.",
       taskBody:
-        "Была квартальная цель - увеличить CR и TR. Можно было экспериментировать и использовать все доступные ресуры на обкатку. \nНу а я, как дизайнер, получил особое поручение, обкатать новый UI Альфа-Банка на этом промежутке и в принципе понять, какой раздел МФО должен быть в будущем. \n\nМного экспериментировал и тестировали разные гипотезы. Расскажу \nо самых важных, которые положительно повлияли на конверсию",
+        "Была квартальная цель - увеличить CR и TR. Можно было экспериментировать и использовать все доступные ресуры на обкатку. \nНу а я, как дизайнер, получил особое поручение, обкатать новый UI Альфа-Банка на этом промежутке и в принципе понять, какой раздел МФО должен быть в будущем. \n\nМного экспериментировал и тестировал разные гипотезы. Расскажу \nо самых важных, которые положительно повлияли на конверсию",
     },
     hypotheses: [
       {
@@ -255,7 +255,7 @@ const ruContent = {
       {
         index: 2,
         hypothesis:
-          "Если перенести бенефиты \nи заявку наверх, то повысим конверсию в заявку\n ⠀⠀⠀⠀⠀⠀⠀",
+          "Если перенести бенефиты \nи заявку наверх, то повышу конверсию в заявку\n ⠀⠀⠀⠀⠀⠀⠀",
         solution:
           "АБ тест: сократить текст бенефитов \nи перенести с заявкой выше",
         after: "/projects/alfabank/hypothesis-2-after.png",
@@ -266,7 +266,7 @@ const ruContent = {
     ],
     research: {
       label: "Как решали",
-      intro: "Полезли в вебвизор и вытянули пользователей на интервью.",
+      intro: "Полез в вебвизор и вытянул пользователей на интервью.",
       insightsLead: "Из этого вылезли инсайты:",
       insights: [
         "Берут деньги не «вообще», а под конкретные жизненные ситуации: закрыть другой кредит, дожить до зарплаты, сделать косметический ремонт. Универсальный оффер «возьмите займ» не цепляет — он не про их задачу.",
@@ -274,7 +274,7 @@ const ruContent = {
       ],
       bonusInsightLead: "Первый инсайт",
       bonusInsight:
-        "На интервью выяснили, что пользователи на эмоциональном уровне побаиваются самих слов «микрозайм», «займ» и упоминания МФО.",
+        "На интервью выяснил, что пользователи на эмоциональном уровне побаиваются самих слов «микрозайм», «займ» и упоминания МФО.",
       secondInsightLead: "Второй инсайт",
       secondInsight: "Самые частые причины взять микрозайм:",
       secondInsightCauses: [
@@ -290,27 +290,27 @@ const ruContent = {
     howWeSolved: {
       label: "Как решали",
       steps: [
-        "Везде убрали слова-блокаторы, часть заменили на более мягкие синонимы. Например: «займ» → «деньги», «одобрение» → «решение \nза 1 минуту» и т.д.",
-        "Запустили АБ-тест с двумя вариантами, чтобы снизить тревожность пользователя.",
+        "Везде убрал слова-блокаторы, часть заменил на более мягкие синонимы. Например: «займ» → «деньги», «одобрение» → «решение \nза 1 минуту» и т.д.",
+        "Запустил АБ-тест с двумя вариантами, чтобы снизить тревожность пользователя.",
       ],
       variants: [
         {
           label: "Вариант 1",
           src: "/projects/alfabank/block%20words%20-%201v.mov",
           caption:
-            "Этот вариант статзначимых изменений \nв конверсию не дал — предполагаем, \nиз-за баннерной слепоты.",
+            "Этот вариант статзначимых изменений \nв конверсию не дал — предполагаю, \nиз-за баннерной слепоты.",
         },
         {
           label: "Вариант 2",
           src: "/projects/alfabank/block%20words%20-%202v.png",
           caption:
-            "2 вариант разместили под заявку — это дало буст примерно на +2 п.п. \nРешили оставить так.",
+            "2 вариант разместил под заявку — это дало буст примерно на +2 п.п. \nРешил оставить так.",
         },
       ],
     },
     insightUsage: {
       title: "Как использовали инсайт",
-      body: "Мы предположили, что если показать пользователю быстрые офферы под его задачу — CR в заявку вырастет, потому что человеку не нужно «переводить» свою ситуацию в параметры кредита. Решили не делать АБ, а сразу пошли в целевую группу, чтобы нащупать интерес.",
+      body: "Я предположил, что если показать пользователю быстрые офферы под его задачу — CR в заявку вырастет, потому что человеку не нужно «переводить» свою ситуацию в параметры кредита. Решил не делать АБ, а сразу пошёл в целевую группу, чтобы нащупать интерес.",
       flowLabel: "Путь пользователя",
       flow: [
         "Заходит на страницу",
@@ -337,11 +337,11 @@ const ruContent = {
         { label: "TR", value: "—", note: "статзначимых изменений нет" },
       ],
       conclusion:
-        "Ставка на quick offers не оправдалась по take rate: спрос есть — CTR 27%, но в одобренные займы он пока не сконвертировался. Гипотеза почему: набор жизненных ситуаций был узким, а предзаполнение бралось по медиане сегмента, а не по профилю пользователя. Это валидируем полным A/B-тестом — в follow-up на 2026.",
+        "Ставка на quick offers не оправдалась по take rate: спрос есть — CTR 27%, но в одобренные займы он пока не сконвертировался. Гипотеза почему: набор жизненных ситуаций был узким, а предзаполнение бралось по медиане сегмента, а не по профилю пользователя. Это валидирую полным A/B-тестом — в follow-up на 2026.",
     },
     postanalysis: {
       title: "Постанализ и выводы",
-      body: "За Q3-Q4 2025 перебрали несколько десятков гипотез — в кейс вошли только те, что реально двигали метрики. Главное, что я вынес: точечные UX-правки дают стабильный, но небольшой прирост. Настоящий скачок случался там, где мы переставали говорить на языке банка и начинали — на языке пользователя.\n\nЗашло не всё, и это нормально. Часть гипотез не дала статзначимого эффекта, часть показала спрос без сдвига метрики. Но каждая проверка, даже неудачная, подсказывала, куда копать дальше.",
+      body: "За Q3-Q4 2025 перебрал несколько десятков гипотез — в кейс вошли только те, что реально двигали метрики. Главное, что я вынес: точечные UX-правки дают стабильный, но небольшой прирост. Настоящий скачок случался там, где я переставал говорить на языке банка и начинал — на языке пользователя.\n\nЗашло не всё, и это нормально. Часть гипотез не дала статзначимого эффекта, часть показала спрос без сдвига метрики. Но каждая проверка, даже неудачная, подсказывала, куда копать дальше.",
       statsLead:
         "Удвоение CR — это накопленный эффект серии тестов за Q3–Q4. На странице показаны три самых показательных; в сумме десятки мелких улучшений и смена языка коммуникации дали выход с 10% до 20%.",
       stats: [
@@ -359,7 +359,7 @@ const ruContent = {
   alfabankPassport: {
     intro: {
       title: "Анкета через паспорт",
-      body: "Было два шага: сначала пользователь заполнял имя, фамилию и контакты, потом — паспортные данные вручную. Сделали проще: он фотографирует паспорт и селфи, а мы выдаём заём до 50 000 ₽.",
+      body: "Было два шага: сначала пользователь заполнял имя, фамилию и контакты, потом — паспортные данные вручную. Сделал проще: он фотографирует паспорт и селфи, а он получает заём до 50 000 ₽.",
     },
     toc: [
       { id: "context", label: "Контекст" },
@@ -373,7 +373,7 @@ const ruContent = {
     ],
     projectTitle: "Новая анкета принесла \n+50 млн ₽ за 2025",
     summary: {
-      body: "Сократили заполнение анкеты на микрозаём с 8 минут до 2: пользователь фотографирует паспорт и селфи, а мы выдаём ему заём до 50 000 ₽.",
+      body: "Сократил заполнение анкеты на микрозаём с 8 минут до 2: пользователь фотографирует паспорт и селфи, и получает заём до 50 000 ₽.",
       stats: [
         { value: "60 сек", description: "на заполнение анкеты вместо 8 минут" },
         { value: "+ 30 п.п.", description: "конверсия в подачу заявки" },
@@ -454,7 +454,7 @@ const ruContent = {
     },
     discovery: {
       label: "Дискавери",
-      body: "Подключили поэкранную аналитику в Amplitude и увидели: почти 80% отвала на паспортном блоке приходится на поля серии и номера паспорта. Интервью с пользователями, бросившими заявку, показали две причины: вбивать данные с паспорта на телефоне — долго и с опечатками, а у части людей паспорта не было под рукой в момент заявки.",
+      body: "Подключил поэкранную аналитику в Amplitude и увидел: почти 80% отвала на паспортном блоке приходится на поля серии и номера паспорта. Интервью с пользователями, бросившими заявку, показали две причины: вбивать данные с паспорта на телефоне — долго и с опечатками, а у части людей паспорта не было под рукой в момент заявки.",
       findings: [
         {
           title: "Где именно бросают на форме?",
@@ -471,9 +471,9 @@ const ruContent = {
     },
     userFlow: {
       label: "Юзерфлоу",
-      body: "Поняли, что поля «семейное положение» и «образование» не дают прироста точности выдачи — их вклад в предсказание дефолта оказался статистически незначимым. С учётом комментариев пользователей на интервью эти поля убрали. Сам заём пользователь получает уже в авторизованной зоне — внутри приложения банка.",
+      body: "Понял, что поля «семейное положение» и «образование» не дают прироста точности выдачи — их вклад в предсказание дефолта оказался статистически незначимым. С учётом комментариев пользователей на интервью эти поля убрал. Сам заём пользователь получает уже в авторизованной зоне — внутри приложения банка.",
       bodyExtra:
-        "Фото паспорта и селфи закрывают не только заполнение формы, но и KYC (know your customer — обязательную идентификацию клиента). Согласие на обработку биометрии встроили в шаг проверки данных — юристы требовали отдельный экран, договорились на чекбокс с раскрывающимся текстом, чтобы не добавлять лишний шаг.",
+        "Фото паспорта и селфи закрывают не только заполнение формы, но и KYC (know your customer — обязательную идентификацию клиента). Согласие на обработку биометрии встроил в шаг проверки данных — юристы требовали отдельный экран, договорился на чекбокс с раскрывающимся текстом, чтобы не добавлять лишний шаг.",
       before: {
         title: "Было",
         steps: [
@@ -571,7 +571,7 @@ const ruContent = {
         },
         {
           title: "Селфи не прошло liveness",
-          body: "Даём 5 попыток с фото. Если не получилось — переключаем на ручной ввод.",
+          body: "Даю 5 попыток с фото. Если не получилось — переключаю на ручной ввод.",
           shots: ["/projects/alfabank/cc3-manual-ru.png"],
         },
       ],
@@ -615,12 +615,12 @@ const ruContent = {
     },
     rejected: {
       label: "Отклонённые идеи",
-      body: "Не всё, что обсуждалось, попало в MVP. Часть отвергли сразу, часть положили в backlog — расскажу про самые показательные.",
+      body: "Не всё, что обсуждалось, попало в MVP. Часть отверг сразу, часть положил в backlog — расскажу про самые показательные.",
       items: [
         {
           title: "Загрузка из галереи",
           reason:
-            "Открывает дыру для фрода — можно подать чужой паспорт, найденный в интернете. С камерой in-app мы видим, что фото сделано здесь и сейчас.",
+            "Открывает дыру для фрода — можно подать чужой паспорт, найденный в интернете. С камерой in-app я вижу, что фото сделано здесь и сейчас.",
           verdict: "Отказались",
         },
         {
@@ -633,14 +633,14 @@ const ruContent = {
     },
     postanalysis: {
       title: "Постанализ и выводы",
-      body: "После релиза собирали метрики 2 месяца. АБ-тест: 50% трафика — новый флоу, 50% — старая анкета. Тестовая группа уверенно обогнала контрольную, и флоу выкатили на 100%.",
+      body: "После релиза собирал метрики 2 месяца. АБ-тест: 50% трафика — новый флоу, 50% — старая анкета. Тестовая группа уверенно обогнала контрольную, и флоу выкатил на 100%.",
       stats: [
         { value: "в 2 раза", description: "быстрее заполнение анкеты" },
         { value: "7% → 15%", description: "take rate", note: "вдвое выше цели в 10%" },
         { value: "+ 50 млн ₽", description: "доход за 2025" },
       ],
       statsNote:
-        "Считали как инкремент: (новый take rate − старый) × средний чек займа × объём заявок за 2025 по данным A/B-теста.",
+        "Считал как инкремент: (новый take rate − старый) × средний чек займа × объём заявок за 2025 по данным A/B-теста.",
       learningsTitle: "Что узнал по дороге",
       learnings: [
         "Важно дать пользователю выбор: заполнить через паспорт или вручную. Бывают кейсы, когда паспорта нет рядом, но человек помнит данные наизусть — без альтернативы такой пользователь уходит. Это войдёт в доработку Q2 2026.",
@@ -664,7 +664,7 @@ const enContent = {
     readCase: "read case",
     comingSoon: "coming soon",
     hypothesis: "Hypothesis",
-    solution: "What we tested",
+    solution: "What I tested",
     result: "Result",
     variantA: "Variant A",
     variantB: "Variant B",
@@ -747,7 +747,7 @@ const enContent = {
     tbankProjects: [
       {
         href: "#",
-        name: "How we made complex online accounting simple",
+        name: "How I made complex online accounting simple",
         tags: "",
         description: "Tripled tax declaration submissions through a convenient in-app interface.",
         metric1Label: "",
@@ -795,7 +795,7 @@ const enContent = {
   alfabankMfo: {
     intro: {
       title: "Microloans",
-      body: "Four hypotheses and A/B tests on the Alfa-Bank microloans page. We doubled overall CR and lifted loan Take Rate by 1.5×.",
+      body: "Four hypotheses and A/B tests on the Alfa-Bank microloans page. I doubled overall CR and lifted loan Take Rate by 1.5×.",
     },
     toc: [
       { id: "context", label: "Context" },
@@ -806,9 +806,9 @@ const enContent = {
       { id: "quick-offers", label: "Quick offers" },
       { id: "postanalysis", label: "Post-analysis" },
     ],
-    projectTitle: "How we doubled conversion \nand take rate on microloans",
+    projectTitle: "How I doubled conversion \nand take rate on microloans",
     summary: {
-      body: "We reworked the microloans page on the Alfa-Bank website. \nApplication conversion grew 2×, and loan Take Rate by roughly 2×.",
+      body: "I reworked the microloans page on the Alfa-Bank website. \nApplication conversion grew 2×, and loan Take Rate by roughly 2×.",
       stats: [
         { value: "×2", description: "lift in overall application conversion" },
         { value: "×1.5", description: "lift in loan Take Rate" },
@@ -841,7 +841,7 @@ const enContent = {
     },
     problem: {
       title: "So where was the problem?",
-      body: "We'd long sensed the page was dated and that we were leaving conversion on the table. \nWe went through session recordings, ran user interviews, and found:",
+      body: "I'd long sensed the page was dated and that I was leaving conversion on the table. \nI went through session recordings, ran user interviews, and found:",
       stats: [
         {
           value: "34%",
@@ -858,13 +858,13 @@ const enContent = {
       taskGoals:
         "Quarterly goal: lift CR from 10% and TR from 9%. Beyond the product task — pilot Alfa-Bank's new UI on this page.",
       taskBody:
-        "There was a quarterly goal — grow CR and TR. We were free to experiment and spend whatever resources we needed on it. \nAs the designer, I also got a special brief: pilot Alfa-Bank's new UI on this surface and, more broadly, figure out what the microloans section should become. \n\nI experimented a lot and tested different hypotheses. Here are the ones that mattered most — the ones that actually moved conversion.",
+        "There was a quarterly goal — grow CR and TR. I was free to experiment and spend whatever resources I needed on it. \nAs the designer, I also got a special brief: pilot Alfa-Bank's new UI on this surface and, more broadly, figure out what the microloans section should become. \n\nI experimented a lot and tested different hypotheses. Here are the ones that mattered most — the ones that actually moved conversion.",
     },
     hypotheses: [
       {
         index: 1,
         hypothesis:
-          "If we add a CTA button \nat the top of the page, \nmore users will reach the application",
+          "If I add a CTA button \nat the top of the page, \nmore users will reach the application",
         solution: "A/B test: a variant with the button \nand one without",
         after: "/projects/alfabank/1hA.mov",
         before: "/projects/alfabank/1hB.png",
@@ -874,7 +874,7 @@ const enContent = {
       {
         index: 2,
         hypothesis:
-          "If we move the benefits \nand the form up, we'll raise application conversion\n ⠀⠀⠀⠀⠀⠀⠀",
+          "If I move the benefits \nand the form up, I'll raise application conversion\n ⠀⠀⠀⠀⠀⠀⠀",
         solution:
           "A/B test: trim the benefits copy \nand move it up with the form",
         after: "/projects/alfabank/2h-new-en.png",
@@ -884,8 +884,8 @@ const enContent = {
       },
     ],
     research: {
-      label: "How we solved it",
-      intro: "We dug into session recordings and pulled users into interviews.",
+      label: "How I solved it",
+      intro: "I dug into session recordings and pulled users into interviews.",
       insightsLead: "Here's what came out of it:",
       insights: [
         "People don't borrow money “in general” — they borrow for specific life situations: paying off another loan, making it to payday, doing some cosmetic repairs. A generic “take a loan” offer doesn't land — it isn't about their task.",
@@ -893,7 +893,7 @@ const enContent = {
       ],
       bonusInsightLead: "First insight",
       bonusInsight:
-        "In interviews we found that, on an emotional level, users are wary of the very words “microloan,” “loan,” and any mention of an MFO.",
+        "In interviews I found that, on an emotional level, users are wary of the very words “microloan,” “loan,” and any mention of an MFO.",
       secondInsightLead: "Second insight",
       secondInsight: "The most common reasons people take a microloan:",
       secondInsightCauses: [
@@ -914,7 +914,7 @@ const enContent = {
       central: "microloan",
     },
     howWeSolved: {
-      label: "How we solved it",
+      label: "How I solved it",
       steps: [
         "Removed the blocker words everywhere and replaced some with softer wording. For example: “loan” → “money,” “approval” → “a decision \nin 1 minute,” and so on.",
         "Ran an A/B test with two variants to lower user anxiety.",
@@ -930,13 +930,13 @@ const enContent = {
           label: "Variant 2",
           src: "/projects/alfabank/InsightB.png",
           caption:
-            "We placed variant 2 right under the form — that gave a lift of about +2 pp. \nWe kept it.",
+            "I placed variant 2 right under the form — that gave a lift of about +2 pp. \nI kept it.",
         },
       ],
     },
     insightUsage: {
       title: "Putting the insight to work",
-      body: "We assumed that showing users quick offers matched to their task would raise application CR — because they wouldn't have to “translate” their situation into loan parameters. Instead of an A/B test, we went straight to the target segment to gauge interest.",
+      body: "I assumed that showing users quick offers matched to their task would raise application CR — because they wouldn't have to “translate” their situation into loan parameters. Instead of an A/B test, I went straight to the target segment to gauge interest.",
       flowLabel: "User flow",
       flow: [
         "Lands on the page",
@@ -963,11 +963,11 @@ const enContent = {
         { label: "TR", value: "—", note: "no statistically significant change" },
       ],
       conclusion:
-        "The bet on quick offers didn't pay off on take rate: the demand is there — 27% CTR — but it hasn't converted into approved loans yet. Our hypothesis why: the set of life situations was too narrow, and the pre-fill was based on the segment median rather than each user's own profile. We'll validate this with a full A/B test — in a 2026 follow-up.",
+        "The bet on quick offers didn't pay off on take rate: the demand is there — 27% CTR — but it hasn't converted into approved loans yet. My hypothesis why: the set of life situations was too narrow, and the pre-fill was based on the segment median rather than each user's own profile. I'll validate this with a full A/B test — in a 2026 follow-up.",
     },
     postanalysis: {
       title: "Post-analysis and takeaways",
-      body: "We went through several dozen hypotheses in Q3-Q4 2025 — only the ones that genuinely moved the metrics made it into this case. My main takeaway: targeted UX fixes give a steady but small gain. The real jumps happened when we stopped speaking the bank's language and started speaking the user's.\n\nNot everything landed, and that's fine. Some hypotheses showed no statistically significant effect, some showed demand without moving the metric. But every test, even a failed one, pointed to where to dig next.",
+      body: "I went through several dozen hypotheses in Q3-Q4 2025 — only the ones that genuinely moved the metrics made it into this case. My main takeaway: targeted UX fixes give a steady but small gain. The real jumps happened when I stopped speaking the bank's language and started speaking the user's.\n\nNot everything landed, and that's fine. Some hypotheses showed no statistically significant effect, some showed demand without moving the metric. But every test, even a failed one, pointed to where to dig next.",
       statsLead:
         "Doubling CR was the cumulative effect of a series of tests across Q3–Q4. The page shows the three most telling ones; together, dozens of small improvements and a shift to the user's language took it from 10% to 20%.",
       stats: [
@@ -985,7 +985,7 @@ const enContent = {
   alfabankPassport: {
     intro: {
       title: "Application via passport",
-      body: "There used to be two steps: first the user filled in their name and contacts, then passport details by hand. We made it simpler: they snap their passport and a selfie, and we issue a loan of up to $500.",
+      body: "There used to be two steps: first the user filled in their name and contacts, then passport details by hand. I made it simpler: they snap their passport and a selfie, and they get a loan of up to $500.",
     },
     toc: [
       { id: "context", label: "Context" },
@@ -999,7 +999,7 @@ const enContent = {
     ],
     projectTitle: "The new application form \nbrought in +$500K in 2025",
     summary: {
-      body: "Cut the microloan application form from 8 minutes to 2: the user just snaps their passport and a selfie, and we issue a loan of up to $500.",
+      body: "Cut the microloan application form from 8 minutes to 2: the user just snaps their passport and a selfie, and gets a loan of up to $500.",
       stats: [
         {
           value: "60 sec",
@@ -1041,7 +1041,7 @@ const enContent = {
       ],
     },
     problem: {
-      label: "What problems we found",
+      label: "What problems I found",
       body: "",
       user: {
         title: "For the user",
@@ -1082,7 +1082,7 @@ const enContent = {
     },
     discovery: {
       label: "Discovery",
-      body: "We wired up per-screen analytics in Amplitude and saw it: nearly 80% of the drop-off at the passport block lands on the passport series and number fields. Interviews with people who abandoned the application surfaced two reasons: typing passport data on a phone is slow and typo-prone, and some people simply didn't have their passport on hand at the moment of applying.",
+      body: "I wired up per-screen analytics in Amplitude and saw it: nearly 80% of the drop-off at the passport block lands on the passport series and number fields. Interviews with people who abandoned the application surfaced two reasons: typing passport data on a phone is slow and typo-prone, and some people simply didn't have their passport on hand at the moment of applying.",
       findings: [
         {
           title: "Where exactly are they quitting?",
@@ -1099,9 +1099,9 @@ const enContent = {
     },
     userFlow: {
       label: "User flow",
-      body: "Turns out the \"marital status\" and \"education\" fields weren't adding any accuracy — their effect on default prediction was statistically insignificant. That, plus what users told us in interviews, led us to remove them.",
+      body: "Turns out the \"marital status\" and \"education\" fields weren't adding any accuracy — their effect on default prediction was statistically insignificant. That, plus what users told me in interviews, led me to remove them.",
       bodyExtra:
-        "The passport photo and selfie cover not just filling out the form but also KYC (know your customer — the mandatory client identification). We built the biometrics-processing consent into the data-review step — legal wanted a separate screen, but we settled on a checkbox with expandable text so we wouldn't add an extra step.",
+        "The passport photo and selfie cover not just filling out the form but also KYC (know your customer — the mandatory client identification). I built the biometrics-processing consent into the data-review step — legal wanted a separate screen, but I settled on a checkbox with expandable text so I wouldn't add an extra step.",
       before: {
         title: "Before",
         steps: [
@@ -1125,7 +1125,7 @@ const enContent = {
       {
         index: 1,
         hypothesis:
-          "If we remove manual entry of passport fields and replace it with a photo — conversion to submission will grow",
+          "If I remove manual entry of passport fields and replace it with a photo — conversion to submission will grow",
         why: "The main drop-off is at the passport block. Competitors already do this, and users ask for it themselves.",
         verdict: "Confirmed",
         resultLabel: "Variant B won. \nSubmission CR:",
@@ -1136,7 +1136,7 @@ const enContent = {
       {
         index: 2,
         hypothesis:
-          "If we tell the user what's happening during scoring — they won't close the tab",
+          "If I tell the user what's happening during scoring — they won't close the tab",
         why: "In prototype testing without a scoring animation, 3 of 5 closed the page thinking it had frozen.",
         verdict: "Confirmed",
         resultLabel: "Drop-off at scoring:",
@@ -1147,7 +1147,7 @@ const enContent = {
       {
         index: 3,
         hypothesis:
-          "If we add a button that opens the app and an animated visual for the approved amount — take rate will grow by 5–10 pp",
+          "If I add a button that opens the app and an animated visual for the approved amount — take rate will grow by 5–10 pp",
         why: "After approval users don't immediately know what to do next. The animated visual makes the amount feel real, and the button gives a clear next step.",
         verdict: "Confirmed",
         resultLabel: "Take rate grew by",
@@ -1158,7 +1158,7 @@ const enContent = {
       {
         index: 4,
         hypothesis:
-          "If we submit the application right after recognition, skipping the review step — we'll cut an extra screen and lift conversion",
+          "If I submit the application right after recognition, skipping the review step — I'll cut an extra screen and lift conversion",
         why: "Fewer screens means a shorter path and higher submission conversion.",
         verdict: "Not confirmed",
         failed: true,
@@ -1169,7 +1169,7 @@ const enContent = {
       {
         index: 5,
         hypothesis:
-          "If we start with the selfie — low barrier, just a face — the entry feels softer and first-step conversion goes up",
+          "If I start with the selfie — low barrier, just a face — the entry feels softer and first-step conversion goes up",
         why: "A selfie is easier than a passport, so it seems logical to start there.",
         verdict: "Not confirmed",
         failed: true,
@@ -1199,7 +1199,7 @@ const enContent = {
         },
         {
           title: "Selfie failed liveness",
-          body: "We give 5 photo attempts. If it still doesn't work — we switch to manual entry.",
+          body: "I give 5 photo attempts. If it still doesn't work — I switch to manual entry.",
           shots: ["/projects/alfabank/cc3-manual-en.png"],
         },
       ],
@@ -1243,12 +1243,12 @@ const enContent = {
     },
     rejected: {
       label: "Rejected ideas",
-      body: "Not everything we discussed made it into the MVP. Some ideas we rejected outright, some we parked in the backlog — here are the most telling ones.",
+      body: "Not everything I discussed made it into the MVP. Some ideas I rejected outright, some I parked in the backlog — here are the most telling ones.",
       items: [
         {
           title: "Upload from gallery",
           reason:
-            "It opens a fraud hole — someone could submit a stranger's passport found online. With an in-app camera, we know the photo was taken here and now.",
+            "It opens a fraud hole — someone could submit a stranger's passport found online. With an in-app camera, I know the photo was taken here and now.",
           verdict: "Rejected",
         },
         {
@@ -1261,7 +1261,7 @@ const enContent = {
     },
     postanalysis: {
       title: "Post-analysis and takeaways",
-      body: "After release we collected metrics for 2 months. An A/B test: 50% of traffic on the new flow, 50% on the old form. The test group clearly beat the control, and the flow was rolled out to 100%.",
+      body: "After release I collected metrics for 2 months. An A/B test: 50% of traffic on the new flow, 50% on the old form. The test group clearly beat the control, and the flow was rolled out to 100%.",
       stats: [
         { value: "×2", description: "faster form completion" },
         { value: "7% → 15%", description: "take rate", note: "twice the 10% goal" },
