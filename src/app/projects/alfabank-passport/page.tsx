@@ -863,6 +863,26 @@ export default function AlfabankPassportPage() {
           </section>
         </Reveal>
 
+        {/* Кредиты проекта — роль, команда, сроки. Три строки в духе
+            метрик: слева приглушённый ярлык, справа значение. */}
+        <Reveal delay={160} className="-mt-8">
+          <section className="flex flex-col gap-2.5 px-4">
+            {alfabankPassport.credits.map((c) => (
+              <div
+                key={c.label}
+                className="flex flex-col gap-0.5 sm:flex-row sm:gap-4"
+              >
+                <span className="text-[13px] leading-[20px] uppercase tracking-[0.88px] text-[var(--fg)]/50 sm:w-[96px] sm:shrink-0">
+                  {c.label}
+                </span>
+                <span className="text-[15px] leading-[20px] text-[var(--fg)]">
+                  {c.value}
+                </span>
+              </div>
+            ))}
+          </section>
+        </Reveal>
+
         {/* Hero — три анимированных экрана продукта сразу после summary.
             Видео с прозрачным фоном. Порядок source важен: HEVC .mov
             (alpha) идёт первым — Safari/iOS берёт его (VP9-альфу в WebM
@@ -981,6 +1001,7 @@ export default function AlfabankPassportPage() {
           </Reveal>
           <Marquee
             items={alfabankPassport.goals.marquee}
+            speed={22}
             colors={["#FF3B5C", "#3B7BFF", "#1FC54C"]}
           />
         </section>
@@ -1026,6 +1047,9 @@ export default function AlfabankPassportPage() {
               <h2 className={HEADING}>{alfabankPassport.userFlow.label}</h2>
               <p className="text-[16px] leading-[22px] text-[var(--fg)]/100">
                 {alfabankPassport.userFlow.body}
+              </p>
+              <p className="text-[16px] leading-[22px] text-[var(--fg)]/100">
+                {alfabankPassport.userFlow.bodyExtra}
               </p>
             </div>
           </Reveal>
@@ -1121,6 +1145,33 @@ export default function AlfabankPassportPage() {
           </section>
         </Reveal>
 
+        {/* Ошибки и крайние случаи */}
+        <Reveal>
+          <section
+            id="edge-cases"
+            className="flex flex-col gap-5 scroll-mt-6"
+          >
+            <div className="flex flex-col gap-2 px-4">
+              <h2 className={HEADING}>{alfabankPassport.edgeCases.label}</h2>
+            </div>
+            <div className="flex flex-col gap-3">
+              {alfabankPassport.edgeCases.items.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] p-4 flex flex-col gap-2"
+                >
+                  <span className="text-[16px] leading-[22px] text-[var(--fg)] font-medium">
+                    {item.title}
+                  </span>
+                  <p className="text-[14px] leading-[20px] text-[var(--fg)]/70">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
         {/* Отклонённые варианты */}
         <Reveal>
           <section
@@ -1184,6 +1235,11 @@ export default function AlfabankPassportPage() {
                 </div>
               ))}
             </div>
+
+            {/* Сноска: как считали инкремент дохода */}
+            <p className="px-4 -mt-1 text-[12px] leading-[17px] text-[var(--fg)]/45">
+              {alfabankPassport.postanalysis.statsNote}
+            </p>
 
             {/* Что узнал по дороге */}
             <div className="px-4 flex flex-col gap-3 mt-2">

@@ -375,6 +375,7 @@ const ruContent = {
       { id: "discovery", label: "Дискавери" },
       { id: "user-flow", label: "Юзерфлоу" },
       { id: "hypotheses", label: "Гипотезы" },
+      { id: "edge-cases", label: "Крайние случаи" },
       { id: "rejected", label: "Отклонили" },
       { id: "postanalysis", label: "Постанализ" },
     ],
@@ -386,6 +387,15 @@ const ruContent = {
         { value: "+ 30 п.п.", description: "конверсия в подачу заявки" },
       ],
     },
+    credits: [
+      {
+        label: "Роль",
+        value:
+          "Lead Product Designer — discovery, проектирование флоу, A/B-тесты",
+      },
+      { label: "Команда", value: "PM, 2 разработчика, ML-инженер, аналитик, QA-инженер" },
+      { label: "Сроки", value: "февраль — май 2025, 10 недель до MVP" },
+    ],
     heroVideos: {
       left: "/projects/alfabank/paspp-ru-left.mov",
       center: "/projects/alfabank/paspp-ru-cent.mov",
@@ -418,7 +428,7 @@ const ruContent = {
         points: [
           "Нужны деньги срочно, а заполнять анкету нет времени",
           "Слишком много полей — устаёт и бросает",
-          "Не помнит паспорт наизусть",
+          "Списывать 10 полей с паспорта на телефоне — долго и с опечатками",
         ],
       },
       business: {
@@ -438,9 +448,9 @@ const ruContent = {
         { label: "SUBMIT RATE", from: "45%", to: "70%" },
       ],
       marquee: [
-        "СОКРАТИТЬ ШАГИ",
-        "СОКРАТИТЬ ВРЕМЯ ЗАПОЛНЕНИЯ",
-        "УВЕЛИЧИТЬ TAKE RATE",
+        "Сократить заполнение с 8 до ~3 минут",
+        "Снизить отвал на паспортном блоке с 35% до <20%",
+        "Поднять take rate с 7% до 10%+",
       ],
     },
     role: {
@@ -455,7 +465,7 @@ const ruContent = {
     },
     discovery: {
       label: "Дискавери",
-      body: "Раньше знали только общую цифру drop-off. Не знали, где именно бросают и почему. Пошли копать.",
+      body: "Подключили поэкранную аналитику в Amplitude и увидели: почти 80% отвала на паспортном блоке приходится на поля серии и номера паспорта. Интервью с пользователями, бросившими заявку, показали две причины: вбивать данные с паспорта на телефоне — долго и с опечатками, а у части людей паспорта не было под рукой в момент заявки.",
       findings: [
         {
           title: "Где именно бросают на форме?",
@@ -468,11 +478,13 @@ const ruContent = {
       ],
       insightLead: "Главный инсайт",
       insight:
-        "Клиенты МФО — специфическая аудитория: студенты, должники, азартные игроки. Срочность для них важнее приватности — фото паспорта воспринимается как нормальный размен на скорость получения денег.",
+        "Клиент МФО приходит в момент срочной нужды: деньги нужны сегодня, на счету минуты. В этом контексте фото паспорта воспринимается как честный обмен — быстрее, чем вспоминать и вбивать 10 полей. Срочность задачи перевешивает дискомфорт от фотографирования документа — это подтвердили интервью.",
     },
     userFlow: {
       label: "Юзерфлоу",
       body: "Поняли, что поля «семейное положение» и «образование» не дают прироста точности выдачи — их вклад в предсказание дефолта оказался статистически незначимым. С учётом комментариев пользователей на интервью эти поля убрали. Сам заём пользователь получает уже в авторизованной зоне — внутри приложения банка.",
+      bodyExtra:
+        "Согласие на обработку биометрии встроили в шаг проверки данных — юристы требовали отдельный экран, договорились на чекбокс с раскрывающимся текстом, чтобы не добавлять лишний шаг.",
       before: {
         title: "Было",
         steps: [
@@ -499,8 +511,8 @@ const ruContent = {
           "Если убрать ручной ввод паспортных полей и заменить на фото — вырастет конверсия в подачу",
         why: "Главный drop-off — на блоке паспорта. Плюс конкуренты уже так делают, и юзеры сами просят.",
         verdict: "Подтвердилась",
-        resultLabel: "Вариант Б показал себя лучше: \nCR в подачу заявки больше на",
-        resultValue: "+ 18 п.п.",
+        resultLabel: "Вариант Б показал себя лучше. \nCR в отправку заявки:",
+        resultValue: "37% → 55% (+18 пп)",
         variantA: "/projects/alfabank/mfo-1h-old-ru.mov",
         variantB: "/projects/alfabank/mfo-1h-new-ru.mov",
       },
@@ -510,15 +522,15 @@ const ruContent = {
           "Если во время скоринга писать пользователю, что происходит — он не закроет вкладку",
         why: "В тесте прототипа без анимации скоринга 3 из 5 закрывали страницу думая, что зависло.",
         verdict: "Подтвердилась",
-        resultLabel: "Drop-off на скоринге \nснизился на",
-        resultValue: "−12 п.п.",
+        resultLabel: "Отвал на скоринге:",
+        resultValue: "30% → 18% (−12 пп)",
         variantA: "/projects/alfabank/mfo-2h-old-ru.mov",
         variantB: "/projects/alfabank/mfo-2h-new-ru.mov",
       },
       {
         index: 3,
         hypothesis:
-          "Если добавить кнопку, которая ведёт в приложение, и анимированный вижуал на одобренную сумму — take rate вырастет на ~10–15%",
+          "Если добавить кнопку, которая ведёт в приложение, и анимированный вижуал на одобренную сумму — take rate вырастет на 5–10 пп",
         why: "После одобрения пользователь не сразу понимает, что делать дальше. Анимированный визуал «вживляет» сумму в восприятие, а кнопка в приложение даёт чёткий следующий шаг.",
         verdict: "Подтвердилась",
         resultLabel: "Take rate вырос на",
@@ -527,6 +539,23 @@ const ruContent = {
         variantB: "/projects/alfabank/mfo-3h-new-ru.mov",
       },
     ],
+    edgeCases: {
+      label: "Ошибки и крайние случаи",
+      items: [
+        {
+          title: "Плохое распознавание",
+          body: "Если система не уверена в каком-то поле, оно подсвечивается и фокус ставится на него — пользователь правит одно поле, а не перепроверяет все десять.",
+        },
+        {
+          title: "Темно / блики",
+          body: "Подсказки прямо в камере: «поднесите ближе», «слишком темно». Фонарик включается автоматически при низкой освещённости.",
+        },
+        {
+          title: "Селфи не прошло liveness",
+          body: "Даём 3 попытки с подсказкой, что не так (очки, тень, лицо не в рамке), после — переключаем на ручной ввод, а не выкидываем из заявки.",
+        },
+      ],
+    },
     solution: {
       label: "Решение",
       body: "Вся анкета свелась к трём фото и одному экрану проверки. Пользователь снимает паспорт и селфи, ждёт скоринг — и получает уже заполненную форму, где остаётся только проставить галочки согласия и отправить.",
@@ -590,9 +619,10 @@ const ruContent = {
         { value: "7% → 15%", description: "take rate" },
         { value: "+ 200 млн ₽", description: "доход за 2025" },
       ],
+      statsNote:
+        "Считали как инкремент: (новый take rate − старый) × средний чек займа × объём заявок за 2025 по данным A/B-теста.",
       learningsTitle: "Что узнал по дороге",
       learnings: [
-        "Edit-режим распознанных полей используют 18% — без него были бы жалобы на «неправильно распознало».",
         "Важно дать пользователю выбор: заполнить через паспорт или вручную. Бывают кейсы, когда паспорта нет рядом, но человек помнит данные наизусть — без альтернативы такой пользователь уходит. Это войдёт в доработку Q2 2026.",
       ],
       futureTitle: "Что хочется доделать",
@@ -951,6 +981,7 @@ const enContent = {
       { id: "discovery", label: "Discovery" },
       { id: "user-flow", label: "User flow" },
       { id: "hypotheses", label: "Hypotheses" },
+      { id: "edge-cases", label: "Edge cases" },
       { id: "rejected", label: "Rejected" },
       { id: "postanalysis", label: "Post-analysis" },
     ],
@@ -965,6 +996,14 @@ const enContent = {
         { value: "+ 30 pp", description: "conversion to application submitted" },
       ],
     },
+    credits: [
+      {
+        label: "Role",
+        value: "Lead Product Designer — discovery, flow design, A/B tests",
+      },
+      { label: "Team", value: "PM, 2 engineers, ML engineer, analyst, QA engineer" },
+      { label: "Timeline", value: "February — May 2025, 10 weeks to MVP" },
+    ],
     heroVideos: {
       left: "/projects/alfabank/paspp-en-left.mov",
       center: "/projects/alfabank/paspp-en-cent.mov",
@@ -997,7 +1036,7 @@ const enContent = {
         points: [
           "Need money fast, no time to fill out a form",
           "Too many fields — gets tired and quits",
-          "Doesn't remember passport details",
+          "Copying 10 passport fields on a phone — slow and typo-prone",
         ],
       },
       business: {
@@ -1017,9 +1056,9 @@ const enContent = {
         { label: "SUBMIT RATE", from: "45%", to: "70%" },
       ],
       marquee: [
-        "CUT STEPS",
-        "CUT FILLING TIME",
-        "LIFT TAKE RATE",
+        "Cut form filling from 8 to ~3 minutes",
+        "Cut passport-block drop-off from 35% to <20%",
+        "Lift take rate from 7% to 10%+",
       ],
     },
     role: {
@@ -1034,7 +1073,7 @@ const enContent = {
     },
     discovery: {
       label: "Discovery",
-      body: "Previously we only knew the overall drop-off number. We didn't know where exactly people quit, or why. So we went digging.",
+      body: "We wired up per-screen analytics in Amplitude and saw it: nearly 80% of the drop-off at the passport block lands on the passport series and number fields. Interviews with people who abandoned the application surfaced two reasons: typing passport data on a phone is slow and typo-prone, and some people simply didn't have their passport on hand at the moment of applying.",
       findings: [
         {
           title: "Where exactly are they quitting?",
@@ -1047,11 +1086,13 @@ const enContent = {
       ],
       insightLead: "The key insight",
       insight:
-        "MFO customers are a specific audience: students, people in debt, gamblers. Urgency outweighs privacy for them — a passport photo reads as a fair trade for getting the money fast.",
+        "An MFO customer shows up in a moment of urgent need: they need the money today, the clock is ticking. In that context a passport photo reads as a fair trade — faster than recalling and typing out 10 fields. The urgency of the task outweighs the discomfort of photographing a document — the interviews confirmed it.",
     },
     userFlow: {
       label: "User flow",
       body: "Turns out the \"marital status\" and \"education\" fields weren't adding any accuracy — their effect on default prediction was statistically insignificant. That, plus what users told us in interviews, led us to remove them.",
+      bodyExtra:
+        "We built the biometrics-processing consent into the data-review step — legal wanted a separate screen, but we settled on a checkbox with expandable text so we wouldn't add an extra step.",
       before: {
         title: "Before",
         steps: [
@@ -1078,8 +1119,8 @@ const enContent = {
           "If we remove manual entry of passport fields and replace it with a photo — conversion to submission will grow",
         why: "The main drop-off is at the passport block. Competitors already do this, and users ask for it themselves.",
         verdict: "Confirmed",
-        resultLabel: "Variant B won: \nsubmission CR higher by",
-        resultValue: "+ 18 pp",
+        resultLabel: "Variant B won. \nSubmission CR:",
+        resultValue: "37% → 55% (+18 pp)",
         variantA: "/projects/alfabank/mfo-1h-old-en.mov",
         variantB: "/projects/alfabank/mfo-1h-new-en.mov",
       },
@@ -1089,15 +1130,15 @@ const enContent = {
           "If we tell the user what's happening during scoring — they won't close the tab",
         why: "In prototype testing without a scoring animation, 3 of 5 closed the page thinking it had frozen.",
         verdict: "Confirmed",
-        resultLabel: "Drop-off at scoring \ndecreased by",
-        resultValue: "−12 pp",
+        resultLabel: "Drop-off at scoring:",
+        resultValue: "30% → 18% (−12 pp)",
         variantA: "/projects/alfabank/mfo-2h-old-en.mov",
         variantB: "/projects/alfabank/mfo-2h-new-en.mov",
       },
       {
         index: 3,
         hypothesis:
-          "If we add a button that opens the app and an animated visual for the approved amount — take rate will grow by ~10–15%",
+          "If we add a button that opens the app and an animated visual for the approved amount — take rate will grow by 5–10 pp",
         why: "After approval users don't immediately know what to do next. The animated visual makes the amount feel real, and the button gives a clear next step.",
         verdict: "Confirmed",
         resultLabel: "Take rate grew by",
@@ -1106,6 +1147,23 @@ const enContent = {
         variantB: "/projects/alfabank/mfo-3h-new-en.mov",
       },
     ],
+    edgeCases: {
+      label: "Errors and edge cases",
+      items: [
+        {
+          title: "Poor recognition",
+          body: "If the system isn't confident about a field, it gets highlighted and focused — the user fixes one field instead of re-checking all ten.",
+        },
+        {
+          title: "Dark / glare",
+          body: "Hints right in the camera: “move closer,” “too dark.” The flashlight turns on automatically in low light.",
+        },
+        {
+          title: "Selfie failed liveness",
+          body: "We give 3 attempts with a hint about what's wrong (glasses, shadow, face out of frame), then switch to manual entry rather than dropping them out of the application.",
+        },
+      ],
+    },
     solution: {
       label: "The solution",
       body: "The whole application boiled down to three photos and one review screen. The user shoots their passport and a selfie, waits for scoring — and gets a pre-filled form where all that's left is to tick the consent boxes and submit.",
@@ -1169,9 +1227,10 @@ const enContent = {
         { value: "7% → 15%", description: "take rate" },
         { value: "+ $2M", description: "2025 revenue" },
       ],
+      statsNote:
+        "Measured as an increment: (new take rate − old) × average loan size × 2025 application volume, based on the A/B test.",
       learningsTitle: "What I learned along the way",
       learnings: [
-        "18% use the edit mode for recognized fields — without it, we'd be fielding complaints about “it recognized this wrong.”",
         "It matters to give users a choice — fill via passport or by hand. There are cases when the passport isn't nearby but the person remembers the details; without the alternative, that user just drops off. This is going into the Q2 2026 follow-up.",
       ],
       futureTitle: "What I'd still like to do",
