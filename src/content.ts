@@ -39,25 +39,6 @@ function process<T>(value: T): T {
 // ============================================================
 //  РУССКИЙ КОНТЕНТ
 // ============================================================
-const RU_CASES = [
-  {
-    href: "/projects/alfabank-mfo",
-    title: "История успеха в разделе \nМФО на сайте",
-    m1Label: "повысили CR",
-    m1Value: "в 2 раза",
-    m2Label: "повысили Take Rate",
-    m2Value: "в 1.5 раза",
-  },
-  {
-    href: "/projects/alfabank-passport",
-    title: "Онлайн-анкета с загрузкой паспорта",
-    m1Label: "на заполнение",
-    m1Value: "60 сек",
-    m2Label: "доход за квартал",
-    m2Value: "+ 100 млн ₽",
-  },
-];
-
 const ruContent = {
   ui: {
     learnMore: "Подробнее",
@@ -190,8 +171,6 @@ const ruContent = {
       },
       { label: "Дизайн-система", value: "Alfa Design System" },
     ],
-    casesLabel: "кейсы",
-    cases: RU_CASES,
   },
 
   alfabankMfo: {
@@ -199,8 +178,6 @@ const ruContent = {
       title: "МФО",
       body: "Четыре гипотезы и AB-тесты на странице микрозаймов на сайте Альфа-Банка. В два раза подняли общий CR, в полтора — Take Rate займов.",
     },
-    casesLabel: "кейсы",
-    cases: RU_CASES,
     toc: [
       { id: "context", label: "Контекст" },
       { id: "before", label: "Как было до" },
@@ -384,8 +361,6 @@ const ruContent = {
       title: "Анкета через паспорт",
       body: "Было два шага: сначала пользователь заполнял имя, фамилию и контакты, потом — паспортные данные вручную. Сделали проще: он фотографирует паспорт и селфи, а мы выдаём заём до 50 000 ₽.",
     },
-    casesLabel: "кейсы",
-    cases: RU_CASES,
     toc: [
       { id: "context", label: "Контекст" },
       { id: "problem", label: "Проблема" },
@@ -683,25 +658,6 @@ const ruContent = {
 // ============================================================
 //  ENGLISH CONTENT
 // ============================================================
-const EN_CASES = [
-  {
-    href: "/projects/alfabank-mfo",
-    title: "A success story in the \nmicroloans section",
-    m1Label: "CR lift",
-    m1Value: "×2",
-    m2Label: "Take Rate lift",
-    m2Value: "×1.5",
-  },
-  {
-    href: "/projects/alfabank-passport",
-    title: "Online application with passport upload",
-    m1Label: "to complete",
-    m1Value: "60 sec",
-    m2Label: "revenue per quarter",
-    m2Value: "+ $1M",
-  },
-];
-
 const enContent = {
   ui: {
     learnMore: "Learn more",
@@ -834,8 +790,6 @@ const enContent = {
       },
       { label: "Design system", value: "Alfa Design System" },
     ],
-    casesLabel: "cases",
-    cases: EN_CASES,
   },
 
   alfabankMfo: {
@@ -843,8 +797,6 @@ const enContent = {
       title: "Microloans",
       body: "Four hypotheses and A/B tests on the Alfa-Bank microloans page. We doubled overall CR and lifted loan Take Rate by 1.5×.",
     },
-    casesLabel: "cases",
-    cases: EN_CASES,
     toc: [
       { id: "context", label: "Context" },
       { id: "before", label: "Before" },
@@ -1035,8 +987,6 @@ const enContent = {
       title: "Application via passport",
       body: "There used to be two steps: first the user filled in their name and contacts, then passport details by hand. We made it simpler: they snap their passport and a selfie, and we issue a loan of up to $500.",
     },
-    casesLabel: "cases",
-    cases: EN_CASES,
     toc: [
       { id: "context", label: "Context" },
       { id: "problem", label: "Problem" },
