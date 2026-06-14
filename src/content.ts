@@ -205,7 +205,9 @@ const ruContent = {
       { id: "context", label: "Контекст" },
       { id: "before", label: "Как было до" },
       { id: "problem", label: "Проблема" },
+      { id: "insights", label: "Инсайты" },
       { id: "hypotheses", label: "Гипотезы" },
+      { id: "quick-offers", label: "Быстрые офферы" },
       { id: "postanalysis", label: "Постанализ" },
     ],
     projectTitle: "Как мы подняли конверсию \nи take rate в 2 раза у микрозаймов",
@@ -216,6 +218,15 @@ const ruContent = {
         { value: "в 1.5 раза", description: "повысили Take Rate займов" },
       ],
     },
+    credits: [
+      {
+        label: "Роль",
+        value:
+          "Product Designer — discovery, UX-гипотезы, A/B-тесты, пилот нового UI",
+      },
+      { label: "Команда", value: "PM, аналитик, 2 разработчика" },
+      { label: "Сроки", value: "Q3 — Q4 2025" },
+    ],
     heroVideo: "/projects/alfabank/preview.mp4",
     context: {
       label: "Контекст",
@@ -248,6 +259,8 @@ const ruContent = {
       bodyExtra:
         "Сама страница обросла огромным количеством легаси и каждая новая UX-доработка должна была пройти через понимание технических ограничений, которые местами очень сильно вставляли палки в колёса.",
       taskTitle: "Определение задачи",
+      taskGoals:
+        "Цель на квартал: поднять CR с 10% и TR с 9%. Сверх продуктовой задачи — пилотировать новый UI Альфа-Банка на этой странице.",
       taskBody:
         "Была квартальная цель - увеличить CR и TR. Можно было экспериментировать и использовать все доступные ресуры на обкатку. \nНу а я, как дизайнер, получил особое поручение, обкатать новый UI Альфа-Банка на этом промежутке и в принципе понять, какой раздел МФО должен быть в будущем. \n\nМного экспериментировал и тестировали разные гипотезы. Расскажу \nо самых важных, которые положительно повлияли на конверсию",
     },
@@ -346,13 +359,17 @@ const ruContent = {
         },
         { label: "TR", value: "—", note: "статзначимых изменений нет" },
       ],
+      conclusion:
+        "Ставка на quick offers не оправдалась по take rate: спрос есть — CTR 27%, но в одобренные займы он пока не сконвертировался. Гипотеза почему: набор жизненных ситуаций был узким, а предзаполнение бралось по медиане сегмента, а не по профилю пользователя. Это валидируем полным A/B-тестом — в follow-up на 2026.",
     },
     postanalysis: {
       title: "Постанализ и выводы",
       body: "За Q3-Q4 2025 перебрали несколько десятков гипотез — в кейс вошли только те, что реально двигали метрики. Главное, что я вынес: точечные UX-правки дают стабильный, но небольшой прирост. Настоящий скачок случался там, где мы переставали говорить на языке банка и начинали — на языке пользователя.\n\nЗашло не всё, и это нормально. Часть гипотез не дала статзначимого эффекта, часть показала спрос без сдвига метрики. Но каждая проверка, даже неудачная, подсказывала, куда копать дальше.",
+      statsLead:
+        "Удвоение CR — это накопленный эффект серии тестов за Q3–Q4. На странице показаны три самых показательных; в сумме десятки мелких улучшений и смена языка коммуникации дали выход с 10% до 20%.",
       stats: [
-        { value: "в 2 раза", description: "повысили общий CR" },
-        { value: "в 1.5 раза", description: "повысили Take Rate займов" },
+        { value: "10% → 20% (×2)", description: "CR" },
+        { value: "9% → 14% (×1.5)", description: "Take Rate" },
       ],
       futureTitle: "Что хочется доделать",
       future: [
@@ -832,7 +849,9 @@ const enContent = {
       { id: "context", label: "Context" },
       { id: "before", label: "Before" },
       { id: "problem", label: "Problem" },
+      { id: "insights", label: "Insights" },
       { id: "hypotheses", label: "Hypotheses" },
+      { id: "quick-offers", label: "Quick offers" },
       { id: "postanalysis", label: "Post-analysis" },
     ],
     projectTitle: "How we doubled conversion \nand take rate on microloans",
@@ -843,6 +862,15 @@ const enContent = {
         { value: "×1.5", description: "lift in loan Take Rate" },
       ],
     },
+    credits: [
+      {
+        label: "Role",
+        value:
+          "Product Designer — discovery, UX hypotheses, A/B tests, piloting the new UI",
+      },
+      { label: "Team", value: "PM, analyst, 2 engineers" },
+      { label: "Timeline", value: "Q3 — Q4 2025" },
+    ],
     heroVideo: "/projects/alfabank/preview.mp4",
     context: {
       label: "Context",
@@ -875,6 +903,8 @@ const enContent = {
       bodyExtra:
         "The page itself had piled up a huge amount of legacy code, and every new UX improvement had to clear a wall of technical constraints that often got badly in the way.",
       taskTitle: "Defining the task",
+      taskGoals:
+        "Quarterly goal: lift CR from 10% and TR from 9%. Beyond the product task — pilot Alfa-Bank's new UI on this page.",
       taskBody:
         "There was a quarterly goal — grow CR and TR. We were free to experiment and spend whatever resources we needed on it. \nAs the designer, I also got a special brief: pilot Alfa-Bank's new UI on this surface and, more broadly, figure out what the microloans section should become. \n\nI experimented a lot and tested different hypotheses. Here are the ones that mattered most — the ones that actually moved conversion.",
     },
@@ -980,13 +1010,17 @@ const enContent = {
         },
         { label: "TR", value: "—", note: "no statistically significant change" },
       ],
+      conclusion:
+        "The bet on quick offers didn't pay off on take rate: the demand is there — 27% CTR — but it hasn't converted into approved loans yet. Our hypothesis why: the set of life situations was too narrow, and the pre-fill was based on the segment median rather than each user's own profile. We'll validate this with a full A/B test — in a 2026 follow-up.",
     },
     postanalysis: {
       title: "Post-analysis and takeaways",
       body: "We went through several dozen hypotheses in Q3-Q4 2025 — only the ones that genuinely moved the metrics made it into this case. My main takeaway: targeted UX fixes give a steady but small gain. The real jumps happened when we stopped speaking the bank's language and started speaking the user's.\n\nNot everything landed, and that's fine. Some hypotheses showed no statistically significant effect, some showed demand without moving the metric. But every test, even a failed one, pointed to where to dig next.",
+      statsLead:
+        "Doubling CR was the cumulative effect of a series of tests across Q3–Q4. The page shows the three most telling ones; together, dozens of small improvements and a shift to the user's language took it from 10% to 20%.",
       stats: [
-        { value: "×2", description: "lift in overall CR" },
-        { value: "×1.5", description: "lift in loan Take Rate" },
+        { value: "10% → 20% (×2)", description: "CR" },
+        { value: "9% → 14% (×1.5)", description: "Take Rate" },
       ],
       futureTitle: "What I'd still like to do",
       future: [

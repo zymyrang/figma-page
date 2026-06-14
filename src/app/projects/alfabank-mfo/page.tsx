@@ -459,6 +459,26 @@ export default function AlfabankMfoPage() {
           </section>
         </Reveal>
 
+        {/* Кредиты проекта — роль, команда, сроки. Тот же визуальный стиль,
+            что и блок credits на alfabank-passport (консистентность портфолио). */}
+        <Reveal delay={160} className="-mt-8">
+          <section className="flex flex-col gap-2.5 px-4">
+            {alfabankMfo.credits.map((c) => (
+              <div
+                key={c.label}
+                className="flex flex-col gap-0.5 sm:flex-row sm:gap-4"
+              >
+                <span className="text-[13px] leading-[20px] uppercase tracking-[0.88px] text-[var(--fg)]/50 sm:w-[96px] sm:shrink-0">
+                  {c.label}
+                </span>
+                <span className="text-[15px] leading-[20px] text-[var(--fg)]">
+                  {c.value}
+                </span>
+              </div>
+            ))}
+          </section>
+        </Reveal>
+
         {/* Контекст */}
         <Reveal>
           <section
@@ -549,26 +569,20 @@ export default function AlfabankMfoPage() {
             <h3 className="text-[25px] leading-[32px] text-[var(--fg)] font-medium mb-2">
               {alfabankMfo.problem.taskTitle}
             </h3>
+            <p className="text-[16px] leading-[22px] text-[var(--fg)] font-medium border-l-2 border-[#0CC44D] pl-3">
+              {alfabankMfo.problem.taskGoals}
+            </p>
             <p className="text-[16px] leading-[22px] text-[var(--fg)]/100 whitespace-pre-line">
               {alfabankMfo.problem.taskBody}
             </p>
           </section>
         </Reveal>
 
-        {/* Гипотезы: 2 узких + 1 широкая */}
-        <section
-          id="hypotheses"
-          className="scroll-mt-6 flex flex-col gap-4 whitespace-pre-line"
-        >
-          <div className="grid grid-cols-1 gap-4 auto-rows-fr items-stretch sm:grid-cols-2">
-            {alfabankMfo.hypotheses.map((h, i) => (
-              <Reveal key={h.index} delay={i * 100}>
-                <HypothesisCard data={h} />
-              </Reveal>
-            ))}
-          </div>
-          {/* Неожиданный инсайт — короткий текст в прямоугольнике.
-              Сразу после гипотез 1-2, до общего исследования. */}
+        {/* Первый инсайт — главный продуктовый вывод кейса. Стоит ПЕРЕД
+            гипотезами, чтобы задавать рамку до точечных UX-правок. Кластер:
+            текст-инсайт + облако слов-блокаторов + «как решали» с A/B-тестом. */}
+        <div id="insights" className="flex flex-col gap-4 scroll-mt-6">
+          {/* Неожиданный инсайт — короткий текст в прямоугольнике. */}
           <Reveal>
             <div className="bg-[var(--card)] border border-[var(--border)] rounded-[16px] p-5 flex flex-col gap-3">
               <div className="flex items-center gap-2">
@@ -583,8 +597,7 @@ export default function AlfabankMfoPage() {
             </div>
           </Reveal>
 
-          {/* Облако «страшных» слов — вынесено за прямоугольник,
-              живёт как самостоятельная визуальная вставка. */}
+          {/* Облако «страшных» слов — самостоятельная визуальная вставка. */}
           <Reveal>
             <ScaryWordsCloud
               surrounding={alfabankMfo.scaryWords.surrounding}
@@ -592,10 +605,23 @@ export default function AlfabankMfoPage() {
             />
           </Reveal>
 
-
           <Reveal>
             <HowWeSolvedBlock data={alfabankMfo.howWeSolved} />
           </Reveal>
+        </div>
+
+        {/* Гипотезы: 2 узких + 1 широкая */}
+        <section
+          id="hypotheses"
+          className="scroll-mt-6 flex flex-col gap-4 whitespace-pre-line"
+        >
+          <div className="grid grid-cols-1 gap-4 auto-rows-fr items-stretch sm:grid-cols-2">
+            {alfabankMfo.hypotheses.map((h, i) => (
+              <Reveal key={h.index} delay={i * 100}>
+                <HypothesisCard data={h} />
+              </Reveal>
+            ))}
+          </div>
         </section>
 
         {/* Второй инсайт — отдельной плашкой перед постанализом.
@@ -618,7 +644,10 @@ export default function AlfabankMfoPage() {
         {/* Как использовали инсайт — гипотеза о быстрых офферах:
             текст, useflow сценария, видео и метрики проверки. */}
         <Reveal>
-          <section className="flex flex-col gap-8 px-4 scroll-mt-6">
+          <section
+            id="quick-offers"
+            className="flex flex-col gap-8 px-4 scroll-mt-6"
+          >
             <div className="flex flex-col gap-2">
               <h2 className="text-[25px] leading-[32px] text-[var(--fg)] font-medium mb-2">
                 {alfabankMfo.insightUsage.title}
@@ -658,6 +687,12 @@ export default function AlfabankMfoPage() {
                 </div>
               ))}
             </div>
+
+            {/* Честный вывод по quick offers: спрос есть, но TR не сдвинулся —
+                зрелый разбор, а не оправдание. */}
+            <p className="text-[15px] leading-[22px] text-[var(--fg)]/70 border-l-2 border-[var(--border)] pl-4 whitespace-pre-line">
+              {alfabankMfo.insightUsage.conclusion}
+            </p>
           </section>
         </Reveal>
 
@@ -675,6 +710,10 @@ export default function AlfabankMfoPage() {
                 {alfabankMfo.postanalysis.body}
               </p>
             </div>
+            {/* Связка «откуда ×2»: явно объясняем накопленный эффект перед цифрами. */}
+            <p className="px-4 text-[16px] leading-[22px] text-[var(--fg)]/100 whitespace-pre-line">
+              {alfabankMfo.postanalysis.statsLead}
+            </p>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {alfabankMfo.postanalysis.stats.map((s) => (
                 <div
