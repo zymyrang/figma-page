@@ -1108,8 +1108,10 @@ export default function AlfabankPassportPage() {
                 const hh = h as typeof h & {
                   variantA?: string;
                   variantB?: string;
+                  failed?: boolean;
                 };
                 const hasVariants = Boolean(hh.variantA && hh.variantB);
+                const failed = Boolean(hh.failed);
                 return (
                   <div
                     key={h.index}
@@ -1121,7 +1123,11 @@ export default function AlfabankPassportPage() {
                           ? `${h.index} ${ui.hypothesis}`
                           : `${ui.hypothesis} ${h.index}`}
                       </span>
-                      <span className="text-[11px] leading-[14px] uppercase tracking-[0.88px] text-[#0CC44D]">
+                      <span
+                        className={`text-[11px] leading-[14px] uppercase tracking-[0.88px] ${
+                          failed ? "text-[#FF3B5C]" : "text-[#0CC44D]"
+                        }`}
+                      >
                         {h.verdict}
                       </span>
                     </div>
@@ -1146,9 +1152,11 @@ export default function AlfabankPassportPage() {
                       <p className="text-[14px] leading-[20px] text-[var(--fg)]/70">
                         {h.resultLabel}
                       </p>
-                      <p className="font-bold text-[20px] leading-[25px] text-[#0CC44D] mt-1">
-                        {h.resultValue}
-                      </p>
+                      {h.resultValue ? (
+                        <p className="font-bold text-[20px] leading-[25px] text-[#0CC44D] mt-1">
+                          {h.resultValue}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 );

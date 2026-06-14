@@ -124,7 +124,7 @@ const ruContent = {
     projects: [
       {
         href: "/projects/alfabank-passport",
-        name: "Как анкета с селфи принесла \n+200 млн за 2025",
+        name: "Как анкета с селфи принесла \n+50 млн за 2025",
         tags: "",
         description: "Сократили время заполнения анкеты — вместо заполнения полей теперь можно сфоткать паспорт.",
         metric1Label: "",
@@ -379,7 +379,7 @@ const ruContent = {
       { id: "rejected", label: "Отклонили" },
       { id: "postanalysis", label: "Постанализ" },
     ],
-    projectTitle: "Новая анкета принесла \n+200 млн ₽ за 2025",
+    projectTitle: "Новая анкета принесла \n+50 млн ₽ за 2025",
     summary: {
       body: "Сократили заполнение анкеты на микрозаём с 8 минут до 2: пользователь фотографирует паспорт и селфи, а мы выдаём ему заём до 50 000 ₽.",
       stats: [
@@ -394,7 +394,7 @@ const ruContent = {
           "Lead Product Designer — discovery, проектирование флоу, A/B-тесты",
       },
       { label: "Команда", value: "PM, 2 разработчика, ML-инженер, аналитик, QA-инженер" },
-      { label: "Сроки", value: "февраль — май 2025, 10 недель до MVP" },
+      { label: "Сроки", value: "февраль 2025 — июль 2025, 10 недель до MVP" },
     ],
     heroVideos: {
       left: "/projects/alfabank/paspp-ru-left.mov",
@@ -535,6 +535,28 @@ const ruContent = {
         variantA: "/projects/alfabank/mfo-3h-old-ru.png",
         variantB: "/projects/alfabank/mfo-3h-new-ru.mov",
       },
+      {
+        index: 4,
+        hypothesis:
+          "Если отправлять заявку сразу после распознавания, без шага проверки, — уберём лишний экран и поднимем конверсию",
+        why: "Меньше экранов — короче путь, выше конверсия в отправку.",
+        verdict: "Не подтвердилась",
+        failed: true,
+        resultLabel:
+          "Конверсия не выросла, местами просела: люди не доверяют автозаполнению и хотят сами убедиться, что данные распознаны верно, перед отправкой.",
+        resultValue: "",
+      },
+      {
+        index: 5,
+        hypothesis:
+          "Если начать с селфи — низкий барьер, просто лицо — вход будет мягче, а конверсия в первый шаг выше",
+        why: "Селфи проще паспорта, логично начать с него.",
+        verdict: "Не подтвердилась",
+        failed: true,
+        resultLabel:
+          "Наоборот: селфи в самом начале отпугивало — непонятно, зачем банку лицо до контекста заявки. Статзначимого роста нет.",
+        resultValue: "",
+      },
     ],
     edgeCases: {
       label: "Ошибки и крайние случаи",
@@ -623,7 +645,7 @@ const ruContent = {
       stats: [
         { value: "в 2 раза", description: "быстрее заполнение анкеты" },
         { value: "7% → 15%", description: "take rate", note: "вдвое выше цели в 10%" },
-        { value: "+ 200 млн ₽", description: "доход за 2025" },
+        { value: "+ 50 млн ₽", description: "доход за 2025" },
       ],
       statsNote:
         "Считали как инкремент: (новый take rate − старый) × средний чек займа × объём заявок за 2025 по данным A/B-теста.",
@@ -729,7 +751,7 @@ const enContent = {
     projects: [
       {
         href: "/projects/alfabank-passport",
-        name: "How the selfie form brought in \n+$2M in 2025",
+        name: "How the selfie form brought in \n+$500K in 2025",
         tags: "",
         description: "Cut the form completion time — instead of filling out fields, the user just snaps their passport.",
         metric1Label: "",
@@ -991,7 +1013,7 @@ const enContent = {
       { id: "rejected", label: "Rejected" },
       { id: "postanalysis", label: "Post-analysis" },
     ],
-    projectTitle: "The new application form \nbrought in +$2M in 2025",
+    projectTitle: "The new application form \nbrought in +$500K in 2025",
     summary: {
       body: "Cut the microloan application form from 8 minutes to 2: the user just snaps their passport and a selfie, and we issue a loan of up to $500.",
       stats: [
@@ -1008,7 +1030,7 @@ const enContent = {
         value: "Lead Product Designer — discovery, flow design, A/B tests",
       },
       { label: "Team", value: "PM, 2 engineers, ML engineer, analyst, QA engineer" },
-      { label: "Timeline", value: "February — May 2025, 10 weeks to MVP" },
+      { label: "Timeline", value: "February 2025 — July 2025, 10 weeks to MVP" },
     ],
     heroVideos: {
       left: "/projects/alfabank/paspp-en-left.mov",
@@ -1149,6 +1171,28 @@ const enContent = {
         variantA: "/projects/alfabank/mfo-3h-old-en.png",
         variantB: "/projects/alfabank/mfo-3h-new-en.mov",
       },
+      {
+        index: 4,
+        hypothesis:
+          "If we submit the application right after recognition, skipping the review step — we'll cut an extra screen and lift conversion",
+        why: "Fewer screens means a shorter path and higher submission conversion.",
+        verdict: "Not confirmed",
+        failed: true,
+        resultLabel:
+          "Conversion didn't grow, and dipped in places: people don't trust auto-fill and want to confirm the data was recognized correctly before submitting.",
+        resultValue: "",
+      },
+      {
+        index: 5,
+        hypothesis:
+          "If we start with the selfie — low barrier, just a face — the entry feels softer and first-step conversion goes up",
+        why: "A selfie is easier than a passport, so it seems logical to start there.",
+        verdict: "Not confirmed",
+        failed: true,
+        resultLabel:
+          "The opposite: a selfie up front scared people off — it wasn't clear why the bank needed their face before any application context. No statistically significant lift.",
+        resultValue: "",
+      },
     ],
     edgeCases: {
       label: "Errors and edge cases",
@@ -1237,7 +1281,7 @@ const enContent = {
       stats: [
         { value: "×2", description: "faster form completion" },
         { value: "7% → 15%", description: "take rate", note: "twice the 10% goal" },
-        { value: "+ $2M", description: "2025 revenue" },
+        { value: "+ $500K", description: "2025 revenue" },
       ],
       statsNote:
         "Measured as an increment: (new take rate − old) × average loan size × 2025 application volume, based on the A/B test.",
