@@ -386,7 +386,7 @@ const ruContent = {
           "Lead Product Designer — discovery, проектирование флоу, A/B-тесты",
       },
       { label: "Команда", value: "PM, 2 разработчика, ML-инженер, аналитик, QA-инженер" },
-      { label: "Сроки", value: "февраль 2025 — июль 2025, 10 недель до MVP" },
+      { label: "Сроки", value: "февраль 2025 — август 2025" },
     ],
     heroVideos: {
       left: "/projects/alfabank/paspp-ru-left.mov",
@@ -1014,7 +1014,7 @@ const enContent = {
         value: "Lead Product Designer — discovery, flow design, A/B tests",
       },
       { label: "Team", value: "PM, 2 engineers, ML engineer, analyst, QA engineer" },
-      { label: "Timeline", value: "February 2025 — July 2025, 10 weeks to MVP" },
+      { label: "Timeline", value: "February 2025 — August 2025" },
     ],
     heroVideos: {
       left: "/projects/alfabank/paspp-en-left.mov",
