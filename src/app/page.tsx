@@ -533,9 +533,11 @@ const ProjectCard = ({
               </span>
             )}
           </div>
-          <p className="text-[15px] leading-[21px] text-[var(--fg)]/55 whitespace-pre-line">
-            {project.description}
-          </p>
+          {project.description && (
+            <p className="text-[15px] leading-[21px] text-[var(--fg)]/55 whitespace-pre-line">
+              {project.description}
+            </p>
+          )}
         </div>
         {(project.metric1Value || project.metric2Value) && (
           <div className="flex flex-col gap-2.5 mt-auto pt-2">

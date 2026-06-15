@@ -128,9 +128,9 @@ const ruContent = {
     tbankProjects: [
       {
         href: "#",
-        name: "Как я делал сложную онлайн-бухгалтерию простой",
+        name: "T-Bank — финансовое суперприложение",
         tags: "",
-        description: "Увеличил кол-во подаваемых деклараций в 3 раза через удобный интерфейс в приложении.",
+        description: "",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
@@ -678,7 +678,7 @@ const enContent = {
     navLinks: [
       {
         label: "CV",
-        href: "https://drive.google.com/file/d/175ohDsHW4J43gmWK5av8l3tAClTqRCNQ/view?usp=sharing",
+        href: "https://drive.google.com/file/d/1q0kDKP4Ysc5DV2ukNpP7_zqon_XiWhcG/view?usp=sharing",
       },
       { label: "Telegram", href: "https://t.me/unluckycat1" },
       {
@@ -747,9 +747,9 @@ const enContent = {
     tbankProjects: [
       {
         href: "#",
-        name: "How I made complex online accounting simple",
+        name: "T-Bank — all-in-one financial app",
         tags: "",
-        description: "Tripled tax declaration submissions through a convenient in-app interface.",
+        description: "",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
