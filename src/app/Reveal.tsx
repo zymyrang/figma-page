@@ -23,27 +23,22 @@ export default function Reveal({
   duration?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  // После завершения анимации убираем inline-стили (включая transform)
-  // полностью — иначе оставшийся `translateY(0)` создаёт новый containing
-  // block для `position: fixed` потомков (PixelPlayground physics canvas).
-  const [done, setDone] = useState(false);
+  const [shown, setShown] = useState(false);
 
+  // Видимость контента НЕ зависит от этого эффекта: в CSS блок виден по
+  // умолчанию и скрывается только при наличии класса .js (см. globals.css),
+  // а если JS не раскроет блок — есть CSS-бэкап. Здесь мы лишь запускаем
+  // красивое появление, когда блок попал во вьюпорт (или как можно скорее).
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const reveal = () => setShown(true);
 
-    // Анимация — это прогрессивное улучшение. Контент НИКОГДА не должен
-    // оставаться невидимым, если что-то пошло не так (вкладка открыта в
-    // фоне и IntersectionObserver не шлёт колбэки, reduced-motion, нет
-    // поддержки IO, медленная гидрация). Поэтому несколько страховок.
-
-    // 1) Уважаем prefers-reduced-motion и отсутствие IO — показываем сразу.
     const prefersReduced =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced || typeof IntersectionObserver === "undefined") {
-      setVisible(true);
+      reveal();
       return;
     }
 
@@ -51,7 +46,7 @@ export default function Reveal({
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setVisible(true);
+            reveal();
             observer.unobserve(entry.target);
           }
         }
@@ -60,15 +55,11 @@ export default function Reveal({
     );
     observer.observe(el);
 
-    // 2) Страховочный таймаут: если за 1.2с ревил не сработал (например,
-    //    вкладка была в фоне при загрузке — IO не доставляет колбэки для
-    //    скрытого документа), показываем контент принудительно.
-    const fallback = window.setTimeout(() => setVisible(true), 1200);
-
-    // 3) Когда вкладка снова становится видимой — гарантированно показываем
-    //    (на случай, если IO «проспал» загрузку в фоне).
+    // Страховка: фоновая вкладка не шлёт колбэки IntersectionObserver —
+    // покажем по таймауту и при возврате вкладки на передний план.
+    const fallback = window.setTimeout(reveal, 1200);
     const onVisible = () => {
-      if (document.visibilityState === "visible") setVisible(true);
+      if (document.visibilityState === "visible") reveal();
     };
     document.addEventListener("visibilitychange", onVisible);
 
@@ -79,25 +70,21 @@ export default function Reveal({
     };
   }, []);
 
-  useEffect(() => {
-    if (!visible) return;
-    const t = setTimeout(() => setDone(true), duration + delay + 100);
-    return () => clearTimeout(t);
-  }, [visible, duration, delay]);
-
-  const style: React.CSSProperties = done
-    ? {}
-    : {
-        opacity: visible ? 1 : 0,
-        transform: visible
-          ? "translate(0, 0)"
-          : `translate(${x}px, ${y}px)`,
-        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-        willChange: "opacity, transform",
-      };
-
   return (
-    <div ref={ref} className={className} style={style}>
+    <div
+      ref={ref}
+      className={`reveal-pending${shown ? " reveal-in" : ""}${
+        className ? ` ${className}` : ""
+      }`}
+      style={
+        {
+          "--reveal-x": `${x}px`,
+          "--reveal-y": `${y}px`,
+          "--reveal-dur": `${duration}ms`,
+          "--reveal-delay": `${delay}ms`,
+        } as React.CSSProperties
+      }
+    >
       {children}
     </div>
   );

@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Маркер «JS выполняется». Ставится синхронно в <head> до первого пайнта.
+// Reveal-анимация скрывает контент ТОЛЬКО при наличии этого класса — поэтому
+// без JS (отключён, заблокирован, не догрузился бандл) контент остаётся виден.
+const jsScript = `document.documentElement.classList.add('js')`;
 // Антифликер: проставляем класс темы до отрисовки контента, чтобы при
 // выбранной светлой теме не было вспышки тёмной.
 const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light')}catch(e){}`;
@@ -48,6 +52,7 @@ export default function RootLayout({
             выполнились синхронно ДО парсинга <body> и первого пайнта.
             next/script даже с beforeInteractive грузится асинхронно
             (поэтому светлая/EN-тема не успевала примениться). */}
+        <script dangerouslySetInnerHTML={{ __html: jsScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: langScript }} />
       </head>

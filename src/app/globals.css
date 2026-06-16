@@ -286,6 +286,44 @@ html.lang-pending body {
   visibility: hidden;
 }
 
+/* ── Reveal: контент виден по умолчанию ──────────────────────────────────
+   Появление с fade+slide — прогрессивное улучшение. Скрываем и анимируем
+   ТОЛЬКО когда подтверждено, что JS выполняется (класс .js на <html>).
+   Если JS отключён/заблокирован/не догрузился — контент остаётся виден.
+   На случай «JS стартовал, но гидрация не дошла до блока» есть чистый
+   CSS-бэкап: через 2.6s блок раскрывается средствами CSS, без участия React. */
+.reveal-pending {
+  opacity: 1;
+}
+.js .reveal-pending {
+  opacity: 0;
+  transform: translate(var(--reveal-x, 0px), var(--reveal-y, 40px));
+  animation: revealSafety 400ms cubic-bezier(0.16, 1, 0.3, 1) 2600ms forwards;
+}
+.js .reveal-pending.reveal-in {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  transition:
+    opacity var(--reveal-dur, 700ms) cubic-bezier(0.16, 1, 0.3, 1)
+      var(--reveal-delay, 0ms),
+    transform var(--reveal-dur, 700ms) cubic-bezier(0.16, 1, 0.3, 1)
+      var(--reveal-delay, 0ms);
+}
+@keyframes revealSafety {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-pending {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 /* Роадмап опыта на главной: самолёт пролетает над четырьмя точками,
    каждая загорается своим цветом, последняя остаётся подсвечена. */
 /* Самолётик в таймлайне «Опыт»: летит линейно по горизонтали все 9s,
