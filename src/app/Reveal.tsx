@@ -32,6 +32,21 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Анимация — это прогрессивное улучшение. Контент НИКОГДА не должен
+    // оставаться невидимым, если что-то пошло не так (вкладка открыта в
+    // фоне и IntersectionObserver не шлёт колбэки, reduced-motion, нет
+    // поддержки IO, медленная гидрация). Поэтому несколько страховок.
+
+    // 1) Уважаем prefers-reduced-motion и отсутствие IO — показываем сразу.
+    const prefersReduced =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced || typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -44,7 +59,24 @@ export default function Reveal({
       { threshold: 0.05, rootMargin: "0px 0px -5% 0px" },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // 2) Страховочный таймаут: если за 1.2с ревил не сработал (например,
+    //    вкладка была в фоне при загрузке — IO не доставляет колбэки для
+    //    скрытого документа), показываем контент принудительно.
+    const fallback = window.setTimeout(() => setVisible(true), 1200);
+
+    // 3) Когда вкладка снова становится видимой — гарантированно показываем
+    //    (на случай, если IO «проспал» загрузку в фоне).
+    const onVisible = () => {
+      if (document.visibilityState === "visible") setVisible(true);
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
   }, []);
 
   useEffect(() => {

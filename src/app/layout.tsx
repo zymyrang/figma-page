@@ -31,7 +31,10 @@ const themeScript = `try{if(localStorage.getItem('theme')==='light')document.doc
 // Антифликер языка: если пользователь сохранил русский — прячем body
 // классом lang-pending до тех пор, пока React не перерисует в RU.
 // Иначе видна вспышка SSR-английского.
-const langScript = `try{if(localStorage.getItem('lang')==='ru')document.documentElement.classList.add('lang-pending')}catch(e){}`;
+// Страховка: даже если React не смонтируется (ошибка гидрации, JS заблокирован
+// расширением, медленная сеть), lang-pending снимается через 2с — body не может
+// остаться скрытым навсегда. Иначе посетитель с сохранённым RU увидит пустую страницу.
+const langScript = `try{if(localStorage.getItem('lang')==='ru'){document.documentElement.classList.add('lang-pending');setTimeout(function(){document.documentElement.classList.remove('lang-pending')},2000)}}catch(e){}`;
 
 export default function RootLayout({
   children,
