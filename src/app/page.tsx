@@ -645,7 +645,9 @@ function TbankPlaceholder() {
 
 function PreviewContent({ project }: { project: Project }) {
   const { lang } = useLang();
-  if (project.href === "#") {
+  // T-Bank card: gif preview — whether it's still a placeholder ("#") or now
+  // links out to the Figma presentation.
+  if (project.href === "#" || project.href.includes("figma.com")) {
     return <TbankPlaceholder />;
   }
   if (project.href === "/projects/alfabank-passport") {
