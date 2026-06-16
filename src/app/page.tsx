@@ -501,10 +501,14 @@ const ProjectCard = ({
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
 
   const isPlaceholder = project.href === "#";
+  const isExternal = /^https?:/.test(project.href);
+  const hoverLabel = (project as { hoverLabel?: string }).hoverLabel;
   return (
     <>
       <Link
         href={project.href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
         onClick={(e) => {
           if (isPlaceholder) {
             e.preventDefault();
@@ -588,7 +592,21 @@ const ProjectCard = ({
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
           )}
-          {isPlaceholder ? ui.comingSoon : ui.readCase}
+          {!isPlaceholder && isExternal && (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="size-3"
+              aria-hidden
+            >
+              <path d="M7 17L17 7M17 7H9M17 7v8" />
+            </svg>
+          )}
+          {hoverLabel || (isPlaceholder ? ui.comingSoon : ui.readCase)}
         </div>
       )}
     </>

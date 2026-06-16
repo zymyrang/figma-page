@@ -746,10 +746,11 @@ const enContent = {
     tbankProjectsLabel: "What I did at T-Bank",
     tbankProjects: [
       {
-        href: "#",
+        href: "https://www.figma.com/proto/wGokqNgxSlXXwUIl6DXqsx/Zharkyn-Kalysh---portfolio?page-id=0%3A1&node-id=1-6184&viewport=212%2C605%2C0.04&t=Ebsy8h4o1OHeJUxc-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1%3A6184",
         name: "T-Bank — all-in-one financial app",
         tags: "",
         description: "",
+        hoverLabel: "View presentation",
         metric1Label: "",
         metric1Value: "",
         metric2Label: "",
